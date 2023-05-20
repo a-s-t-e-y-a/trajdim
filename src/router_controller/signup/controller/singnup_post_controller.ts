@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import prisma from "../../../config/helper.ts";
+import prisma from "../../../config/helper";
 export const signupPost = async (
   req: Request,
   res: Response
