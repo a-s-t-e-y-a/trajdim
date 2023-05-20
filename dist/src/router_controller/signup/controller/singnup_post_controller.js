@@ -13,13 +13,18 @@ const signupPost = async (req, res) => {
                 res.status(500).send(error);
             }
             else {
-                const info = await helper_1.default.user.create({
-                    data: Object.assign(Object.assign({}, req.body), { password: hash }),
-                });
-                res.status(200).json({
-                    message: "User created successfully",
-                    data: info,
-                });
+                try {
+                    const info = await helper_1.default.user.create({
+                        data: Object.assign(Object.assign({}, req.body), { password: hash }),
+                    });
+                    res.status(200).json({
+                        message: "User created successfully",
+                        data: info,
+                    });
+                }
+                catch (error) {
+                    res.status(500).send(error.message);
+                }
             }
         });
     }
