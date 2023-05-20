@@ -48,4 +48,3 @@ export const login = async (req: Request, res: Response): Promise<any> => {
     res.status(500).send(error.message);
   }
 };
-
