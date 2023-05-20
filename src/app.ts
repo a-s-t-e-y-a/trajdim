@@ -22,5 +22,5 @@ app.use(express.static(__dirname));
 import signup from "./router_controller/signup/singup_router.ts";
 import loginRoute from "./login/login_router.ts";
 app.use(signup);
-app.use(loginRoute)
+app.use(loginRoute);
 export default app;
