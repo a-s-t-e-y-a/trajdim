@@ -3,8 +3,7 @@ name: baksey-server-install
 on:
   push:
     branches:
-      - main
-
+      - master
 jobs:
   deploy:
     name: Deploy
