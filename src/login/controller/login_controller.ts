@@ -1,7 +1,7 @@
-import { Request, Response } from 'express';
-import bcrypt from 'bcrypt';
-import prisma from '../../config/helper';
-import jwt from 'jsonwebtoken';
+import { Request, Response } from "express";
+import bcrypt from "bcrypt";
+import prisma from "../../config/helper";
+import jwt from "jsonwebtoken";
 
 export const login = async (req: Request, res: Response): Promise<any> => {
   try {
@@ -24,23 +24,23 @@ export const login = async (req: Request, res: Response): Promise<any> => {
               email: user.email,
               name: user.name,
             },
-            process.env.SECRET_KEY || ''
+            process.env.SECRET_KEY || ""
           );
 
           res.status(200).json({
-            message: 'User logged in successfully',
+            message: "User logged in successfully",
             data: token,
           });
         } else {
           res.status(404).json({
-            message: 'User credentials do not match',
+            message: "User credentials do not match",
             data: [],
           });
         }
       });
     } else {
       res.status(404).json({
-        message: 'User not found',
+        message: "User not found",
         data: [],
       });
     }
@@ -48,4 +48,3 @@ export const login = async (req: Request, res: Response): Promise<any> => {
     res.status(500).send(error.message);
   }
 };
-
