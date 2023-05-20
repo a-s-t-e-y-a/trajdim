@@ -10,6 +10,7 @@ export const signupPost = async (
       if (error) {
         res.status(500).send(error);
       } else {
+        try{
         const info = await prisma.user.create({
           data: {
             ...req.body,
@@ -20,6 +21,9 @@ export const signupPost = async (
           message: "User created successfully",
           data: info,
         });
+        }catch(error:any){
+ res.status(500).send(error.message);
+        }
       }
     });
   } catch (error: any) {
