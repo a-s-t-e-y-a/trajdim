@@ -1,0 +1,18 @@
+model teams {
+    id       String    @id @default(auto()) @map("_id") @db.ObjectId
+    user String @db.ObjectId
+    photo String
+    name String
+    title String
+    email String
+    color String
+    days String[]
+    from String[]
+    to String[]
+    view String[]
+    add String[]
+    edit String[]
+  }
+
+
+
