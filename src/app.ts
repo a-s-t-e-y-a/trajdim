@@ -21,6 +21,8 @@ app.use(express.static(__dirname));
 // Rest of your code...
 import signup from "./router_controller/signup/singup_router";
 import loginRoute from "./router_controller/login/login_router";
+import uploads from "./router_controller/upload/upload_route"
 app.use("/trajdim", signup);
 app.use("/trajdim", loginRoute);
+app.use('/trajdim',uploads)
 export default app;
