@@ -3,19 +3,18 @@ import { Request, Response } from "express";
 interface AuthenticatedRequest extends Request {
   user?: any;
 }
-export const coustmerPost = async (
+export const coustmerGet = async (
   req: AuthenticatedRequest,
   res: Response
 ): Promise<any> => {
   try {
-    const data1 = await prisma.coustmer.create({
-      data: {
-        ...req.body,
-        user: req.user.id,
+    const data1 = await prisma.coustmer.findUnique({
+      where: {
+        id: req.params.id,
       },
     });
     res.status(200).json({
-      message: "coustmer created successfuly",
+      message: "coustmer get successfuly",
       data: data1,
     });
   } catch (error) {

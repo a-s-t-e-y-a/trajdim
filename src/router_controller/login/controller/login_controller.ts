@@ -23,8 +23,9 @@ export const login = async (req: Request, res: Response): Promise<any> => {
             {
               email: user.email,
               name: user.name,
+              id:user.id
             },
-            process.env.SECRET_KEY || ""
+            process.env.SECRET_KEY
           );
 
           res.status(200).json({

@@ -13,16 +13,15 @@ const authenticateToken = (
 ) => {
   // Extract the token from the request headers
   const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
 
-  if (!token) {
+  if (!authHeader) {
     // Token is missing
     return res.status(401).json({ error: "Missing token" });
   }
 
   try {
     // Verify the JWT token
-    const decoded = jwt.verify(token, "your-secret-key") as JwtPayload;
+    const decoded = jwt.verify(authHeader, process.env.SECRET_KEY) as JwtPayload;
 
     // Attach the decoded token to the request object
     req.user = decoded;

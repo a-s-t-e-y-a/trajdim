@@ -3,15 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.coustmerPost = void 0;
+exports.coustmerAllGet = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
-const coustmerPost = async (req, res) => {
+const coustmerAllGet = async (req, res) => {
     try {
-        const data1 = await helper_1.default.coustmer.create({
-            data: Object.assign(Object.assign({}, req.body), { user: req.user.id }),
-        });
+        const data1 = await helper_1.default.coustmer.findMany({});
         res.status(200).json({
-            message: "coustmer created successfuly",
+            message: "all coustmer get successfuly",
             data: data1,
         });
     }
@@ -19,5 +17,5 @@ const coustmerPost = async (req, res) => {
         res.status(500).send(error.message);
     }
 };
-exports.coustmerPost = coustmerPost;
-//# sourceMappingURL=coustmer_controller.js.map
+exports.coustmerAllGet = coustmerAllGet;
+//# sourceMappingURL=coustmer_get_all_controller.js.map
