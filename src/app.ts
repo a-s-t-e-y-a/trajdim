@@ -23,8 +23,10 @@ import signup from "./router_controller/signup/singup_router";
 import loginRoute from "./router_controller/login/login_router";
 import uploads from "./router_controller/upload/upload_route";
 import coustmer from "./router_controller/coustmer/coustmer_route";
+import team from "./router_controller/teams/teams_route"
 app.use("/trajdim", signup);
 app.use("/trajdim", loginRoute);
 app.use("/trajdim", uploads);
-app.use("/trajdim",coustmer)
+app.use("/trajdim", coustmer);
+app.use('/trajdim',team)
 export default app;
