@@ -1,39 +1,47 @@
-import express from 'express';
-import multer from 'multer';
-import fs from 'fs';
-import { PrismaClient } from '@prisma/client';
+import express from "express";
+import multer from "multer";
+import fs from "fs";
+import { PrismaClient } from "@prisma/client";
 
 const uploads = express.Router();
 
 const prisma = new PrismaClient();
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: "uploads/" });
 // Custom file validation function
-const fileFilter = (req: express.Request, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
+const fileFilter = (
+  req: express.Request,
+  file: Express.Multer.File,
+  cb: multer.FileFilterCallback
+) => {
   // Check file size (max 5MB)
   const maxSize = 5 * 1024 * 1024; // 5MB
   if (file.size > maxSize) {
-    cb(new Error('File size exceeds the allowed limit.'));
+    cb(new Error("File size exceeds the allowed limit."));
     return;
   }
 
   // Check file type (only allow images)
-  const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+  const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
   if (!allowedTypes.includes(file.mimetype)) {
-    cb(new Error('Invalid file type. Only JPEG, PNG, and GIF images are allowed.'));
+    cb(
+      new Error(
+        "Invalid file type. Only JPEG, PNG, and GIF images are allowed."
+      )
+    );
     return;
   }
 
   cb(null, true); // Pass the validation
 };
 
-uploads.post('/upload', upload.single('file'), async (req, res) => {
+uploads.post("/upload", upload.single("file"), async (req, res) => {
   if (!req.file) {
-    return res.status(400).send('No file uploaded.');
+    return res.status(400).send("No file uploaded.");
   }
 
   try {
     const fileData = fs.readFileSync(req.file.path);
-    const base64Data = fileData.toString('base64');
+    const base64Data = fileData.toString("base64");
 
     // Store the base64 data in the database using Prisma
 
@@ -41,12 +49,12 @@ uploads.post('/upload', upload.single('file'), async (req, res) => {
     fs.unlinkSync(req.file.path);
 
     res.status(200).json({
-      message:"File uploaded done",
-      data:base64Data
+      message: "File uploaded done",
+      data: base64Data,
     });
   } catch (error) {
-    console.error('Error storing file:', error);
-    res.status(500).send('An error occurred while storing the file.');
+    console.error("Error storing file:", error);
+    res.status(500).send("An error occurred while storing the file.");
   }
 });
-export default uploads 
+export default uploads;

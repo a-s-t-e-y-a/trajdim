@@ -21,7 +21,9 @@ app.use(express_1.default.static(__dirname));
 // Rest of your code...
 const singup_router_1 = __importDefault(require("./router_controller/signup/singup_router"));
 const login_router_1 = __importDefault(require("./router_controller/login/login_router"));
+const upload_route_1 = __importDefault(require("./router_controller/upload/upload_route"));
 app.use("/trajdim", singup_router_1.default);
 app.use("/trajdim", login_router_1.default);
+app.use("/trajdim", upload_route_1.default);
 exports.default = app;
 //# sourceMappingURL=app.js.map
