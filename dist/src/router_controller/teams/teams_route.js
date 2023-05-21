@@ -10,7 +10,7 @@ const teams_edit_controller_1 = require("./controller/teams_edit_controller");
 const teams_delete_controller_1 = require("./controller/teams_delete_controller");
 const team = express_1.default.Router();
 team.post("/team", auth_1.default, teams_controller_1.teamsPost);
-team.patch('/team', auth_1.default, teams_edit_controller_1.teamEdit);
-team.delete('/team', auth_1.default, teams_delete_controller_1.teamsDelete);
+team.patch("/team", auth_1.default, teams_edit_controller_1.teamEdit);
+team.delete("/team", auth_1.default, teams_delete_controller_1.teamsDelete);
 exports.default = team;
 //# sourceMappingURL=teams_route.js.map

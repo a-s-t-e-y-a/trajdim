@@ -12,9 +12,9 @@ export const coustmerEdit = async (
       where: {
         id: req.params.id,
       },
-      data:{
-        ...req.body
-      }
+      data: {
+        ...req.body,
+      },
     });
     res.status(200).json({
       message: "coustmer updated successfuly",

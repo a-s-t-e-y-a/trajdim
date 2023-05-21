@@ -28,6 +28,6 @@ app.use("/trajdim", singup_router_1.default);
 app.use("/trajdim", login_router_1.default);
 app.use("/trajdim", upload_route_1.default);
 app.use("/trajdim", coustmer_route_1.default);
-app.use('/trajdim', teams_route_1.default);
+app.use("/trajdim", teams_route_1.default);
 exports.default = app;
 //# sourceMappingURL=app.js.map

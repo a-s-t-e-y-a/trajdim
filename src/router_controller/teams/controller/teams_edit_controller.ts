@@ -12,9 +12,9 @@ export const teamEdit = async (
       where: {
         id: req.params.id,
       },
-      data:{
-        ...req.body
-      }
+      data: {
+        ...req.body,
+      },
     });
     res.status(200).json({
       message: "teams updated successfuly",

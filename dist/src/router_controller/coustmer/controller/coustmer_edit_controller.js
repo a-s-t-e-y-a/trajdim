@@ -11,7 +11,7 @@ const coustmerEdit = async (req, res) => {
             where: {
                 id: req.params.id,
             },
-            data: Object.assign({}, req.body)
+            data: Object.assign({}, req.body),
         });
         res.status(200).json({
             message: "coustmer updated successfuly",
