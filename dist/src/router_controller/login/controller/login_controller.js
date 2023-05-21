@@ -24,7 +24,7 @@ const login = async (req, res) => {
                     const token = jsonwebtoken_1.default.sign({
                         email: user.email,
                         name: user.name,
-                        id: user.id
+                        id: user.id,
                     }, process.env.SECRET_KEY);
                     res.status(200).json({
                         message: "User logged in successfully",

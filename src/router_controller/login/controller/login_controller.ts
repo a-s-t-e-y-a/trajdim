@@ -23,7 +23,7 @@ export const login = async (req: Request, res: Response): Promise<any> => {
             {
               email: user.email,
               name: user.name,
-              id:user.id
+              id: user.id,
             },
             process.env.SECRET_KEY
           );

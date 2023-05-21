@@ -21,7 +21,10 @@ const authenticateToken = (
 
   try {
     // Verify the JWT token
-    const decoded = jwt.verify(authHeader, process.env.SECRET_KEY) as JwtPayload;
+    const decoded = jwt.verify(
+      authHeader,
+      process.env.SECRET_KEY
+    ) as JwtPayload;
 
     // Attach the decoded token to the request object
     req.user = decoded;
