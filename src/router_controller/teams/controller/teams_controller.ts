@@ -7,25 +7,25 @@ export const teamsPost = async (
   req: AuthenticatedRequest,
   res: Response
 ): Promise<any> => {
-  const {schedule,access,...rest} = req.body
+  const { schedule, access, ...rest } = req.body;
   try {
     const data1 = await prisma.team.create({
       data: {
         user: req.user.id,
 
-        schedule : {
-          create : schedule || []
+        schedule: {
+          create: schedule || [],
         },
 
-        access : {
-          create : access || []
+        access: {
+          create: access || [],
         },
-        ...rest
+        ...rest,
       },
-      include : {
-        schedule : true,
-        access : true
-      }
+      include: {
+        schedule: true,
+        access: true,
+      },
     });
     res.status(200).json({
       message: "teams created successfuly",

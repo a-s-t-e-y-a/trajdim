@@ -21,14 +21,14 @@ const teamsPost = async (req, res) => {
     try {
         const data1 = await helper_1.default.team.create({
             data: Object.assign({ user: req.user.id, schedule: {
-                    create: schedule || []
+                    create: schedule || [],
                 }, access: {
-                    create: access || []
+                    create: access || [],
                 } }, rest),
             include: {
                 schedule: true,
-                access: true
-            }
+                access: true,
+            },
         });
         res.status(200).json({
             message: "teams created successfuly",
