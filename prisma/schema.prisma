@@ -33,20 +33,38 @@ model coustmer {
 }
 
 
-model teams {
-      id       String    @id @default(auto()) @map("_id") @db.ObjectId
+model Team {
+    id       String    @id @default(auto()) @map("_id") @db.ObjectId
     user String @db.ObjectId
     photo String
     name String
-    title String
+    job_title String
     email String
+    phone Int
     color String
-    days String[]
-    from String[]
-    to String[]
-    view String[]
-    add String[]
-    edit String[]
+    schedule Schedule[]
+    access Access[]
+   
+  }
+
+  model Schedule {
+     id       String    @id @default(auto()) @map("_id") @db.ObjectId
+     team     Team  @relation(fields : [team_id],references : [id],onDelete : Cascade , onUpdate : Cascade)
+     team_id  String @db.ObjectId
+     day String 
+     from String 
+     to String
+
+  }
+
+  model Access {
+      id       String    @id @default(auto()) @map("_id") @db.ObjectId
+     team      Team  @relation(fields : [team_id],references : [id],onDelete : Cascade , onUpdate : Cascade)
+     team_id   String @db.ObjectId
+     api String
+     view Boolean @default(false)
+     edit Boolean @default(false)
+     add Boolean @default(false)
   }
 
 

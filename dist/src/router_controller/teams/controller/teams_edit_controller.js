@@ -7,7 +7,7 @@ exports.teamEdit = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
 const teamEdit = async (req, res) => {
     try {
-        const data1 = await helper_1.default.teams.update({
+        const data1 = await helper_1.default.team.update({
             where: {
                 id: req.params.id,
             },

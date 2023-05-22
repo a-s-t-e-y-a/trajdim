@@ -8,7 +8,7 @@ export const teamEdit = async (
   res: Response
 ): Promise<any> => {
   try {
-    const data1 = await prisma.teams.update({
+    const data1 = await prisma.team.update({
       where: {
         id: req.params.id,
       },

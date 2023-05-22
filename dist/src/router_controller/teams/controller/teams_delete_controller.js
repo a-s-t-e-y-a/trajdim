@@ -7,7 +7,7 @@ exports.teamsDelete = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
 const teamsDelete = async (req, res) => {
     try {
-        const data1 = await helper_1.default.teams.delete({
+        const data1 = await helper_1.default.team.delete({
             where: {
                 id: req.params.id,
             },

@@ -8,7 +8,7 @@ export const teamsDelete = async (
   res: Response
 ): Promise<any> => {
   try {
-    const data1 = await prisma.teams.delete({
+    const data1 = await prisma.team.delete({
       where: {
         id: req.params.id,
       },
