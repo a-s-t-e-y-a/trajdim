@@ -13,7 +13,7 @@ export const teamsGetSchdule = async (
     const teams = await prisma.schedule.findMany({
       where: {
         id: req.params.id,
-      }
+      },
     });
 
     res.status(200).json({

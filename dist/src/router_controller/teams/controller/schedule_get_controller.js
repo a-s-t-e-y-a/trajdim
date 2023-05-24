@@ -10,7 +10,7 @@ const teamsGetSchdule = async (req, res) => {
         const teams = await helper_1.default.schedule.findMany({
             where: {
                 id: req.params.id,
-            }
+            },
         });
         res.status(200).json({
             message: "Teams fetched successfully",
