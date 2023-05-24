@@ -1,0 +1,19 @@
+model Services {
+   id       String @id @default(auto()) @map("_id") @db.ObjectId
+  user String @db.ObjectId
+  name String
+  description String
+  color String
+  photo String
+  contract String
+  contract_choose Boolean
+
+}
+
+model question {
+   id       String @id @default(auto()) @map("_id") @db.ObjectId
+  user String @db.ObjectId
+  question   Services   @relation(fields: [questionId], references: [id])
+  questionId String @db.ObjectId
+  
+}
