@@ -9,7 +9,6 @@ const team = express.Router();
 team.post("/team", authenticateToken, teamsPost);
 team.patch("/team", authenticateToken, teamEdit);
 team.delete("/team", authenticateToken, teamsDelete);
-team.get("/team",authenticateToken,teamsGet)
-team.get("/team/:id",authenticateToken,teamsGetSingle)
+team.get("/team", authenticateToken, teamsGet);
+team.get("/team/:id", authenticateToken, teamsGetSingle);
 export default team;
-

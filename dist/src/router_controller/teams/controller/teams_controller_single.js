@@ -10,7 +10,7 @@ const teamsGetSingle = async (req, res) => {
         const teams = await helper_1.default.team.findMany({
             where: {
                 user: req.user.id,
-                id: req.params.id
+                id: req.params.id,
             },
             include: {
                 schedule: true,

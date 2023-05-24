@@ -13,7 +13,7 @@ export const teamsGetSingle = async (
     const teams = await prisma.team.findMany({
       where: {
         user: req.user.id,
-        id:req.params.id
+        id: req.params.id,
       },
       include: {
         schedule: true,
@@ -29,4 +29,3 @@ export const teamsGetSingle = async (
     res.status(500).send(error.message);
   }
 };
-
