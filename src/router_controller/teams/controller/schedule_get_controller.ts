@@ -10,14 +10,17 @@ export const teamsGetSchdule = async (
   res: Response
 ): Promise<any> => {
   try {
-    const teams = await prisma.schedule.findMany({
+    const teams = await prisma.schedule.update({
       where: {
         id: req.params.id,
       },
+  data:{
+  ...req.body
+  }
     });
 
     res.status(200).json({
-      message: "Teams fetched successfully",
+      message: "schedule update successfully",
       data: teams,
     });
   } catch (error) {
