@@ -12,5 +12,5 @@ team.patch("/team/:id", authenticateToken, teamsEdit);
 team.delete("/team/:id", authenticateToken, teamsDelete);
 team.get("/team", authenticateToken, teamsGet);
 team.get("/team/:id", authenticateToken, teamsGetSingle);
-team.get("/team/schdeule/:id", authenticateToken, teamsGetSchdule);
+team.patch("/team/schdeule/:id", authenticateToken, teamsGetSchdule);
 export default team;
