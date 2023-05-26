@@ -10,12 +10,12 @@ const work_orderDELETE = async (req, res) => {
         const d1 = await helper_1.default.work_order.delete({
             where: { id: req.params.id },
             include: {
-                items: true
-            }
+                items: true,
+            },
         });
         res.status(200).json({
             message: "work order deleted successfully",
-            data: d1
+            data: d1,
         });
     }
     catch (error) {
