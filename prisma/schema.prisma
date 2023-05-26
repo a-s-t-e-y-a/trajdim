@@ -95,7 +95,6 @@ model Team {
 
 model Item {
      id       String    @id @default(auto()) @map("_id") @db.ObjectId 
-    user String @db.ObjectId
     name String
     price String
     per String

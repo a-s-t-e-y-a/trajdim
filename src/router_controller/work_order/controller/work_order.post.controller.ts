@@ -8,12 +8,12 @@ export const work_orderPOST = async (
   res: Response
 ): Promise<any> => {
   try {
-    const { item, ...rest } = req.body;
+    const { items, ...rest } = req.body;
     const data1 = await prisma.work_order.create({
       data: {
         user: req.user.id,
-        item: {
-          create: item || [],
+        items: {
+          create: items|| [],
         },
         ...rest,
       },
@@ -23,6 +23,7 @@ export const work_orderPOST = async (
       data: data1,
     });
   } catch (error) {
+    console.log(error)
     res.status(500).send(error.message);
   }
 };
