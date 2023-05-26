@@ -24,10 +24,12 @@ const login_router_1 = __importDefault(require("./router_controller/login/login_
 const upload_route_1 = __importDefault(require("./router_controller/upload/upload_route"));
 const coustmer_route_1 = __importDefault(require("./router_controller/coustmer/coustmer_route"));
 const teams_route_1 = __importDefault(require("./router_controller/teams/teams_route"));
+const work_order_route_1 = __importDefault(require("router_controller/work_order/work_order.route"));
 app.use("/trajdim", singup_router_1.default);
 app.use("/trajdim", login_router_1.default);
 app.use("/trajdim", upload_route_1.default);
 app.use("/trajdim", coustmer_route_1.default);
 app.use("/trajdim", teams_route_1.default);
+app.use("/trajdim", work_order_route_1.default);
 exports.default = app;
 //# sourceMappingURL=app.js.map

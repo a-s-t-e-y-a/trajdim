@@ -7,13 +7,14 @@ exports.teamsGetSchdule = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
 const teamsGetSchdule = async (req, res) => {
     try {
-        const teams = await helper_1.default.schedule.findMany({
+        const teams = await helper_1.default.schedule.update({
             where: {
                 id: req.params.id,
             },
+            data: Object.assign({}, req.body),
         });
         res.status(200).json({
-            message: "Teams fetched successfully",
+            message: "schedule update successfully",
             data: teams,
         });
     }

@@ -17,6 +17,6 @@ team.patch("/team/:id", auth_1.default, teams_edit_controller_1.teamsEdit);
 team.delete("/team/:id", auth_1.default, teams_delete_controller_1.teamsDelete);
 team.get("/team", auth_1.default, teams_controller_get_1.teamsGet);
 team.get("/team/:id", auth_1.default, teams_controller_single_1.teamsGetSingle);
-team.get("/team/schdeule/:id", auth_1.default, schedule_get_controller_1.teamsGetSchdule);
+team.patch("/team/schdeule/:id", auth_1.default, schedule_get_controller_1.teamsGetSchdule);
 exports.default = team;
 //# sourceMappingURL=teams_route.js.map
