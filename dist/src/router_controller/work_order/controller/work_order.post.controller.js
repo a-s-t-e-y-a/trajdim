@@ -18,10 +18,10 @@ exports.work_orderPOST = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
 const work_orderPOST = async (req, res) => {
     try {
-        const _a = req.body, { item } = _a, rest = __rest(_a, ["item"]);
+        const _a = req.body, { items } = _a, rest = __rest(_a, ["items"]);
         const data1 = await helper_1.default.work_order.create({
-            data: Object.assign({ user: req.user.id, item: {
-                    create: item || [],
+            data: Object.assign({ user: req.user.id, items: {
+                    create: items || [],
                 } }, rest),
         });
         res.status(200).json({
@@ -30,6 +30,7 @@ const work_orderPOST = async (req, res) => {
         });
     }
     catch (error) {
+        console.log(error);
         res.status(500).send(error.message);
     }
 };

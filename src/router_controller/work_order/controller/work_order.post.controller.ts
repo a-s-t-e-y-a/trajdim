@@ -13,7 +13,7 @@ export const work_orderPOST = async (
       data: {
         user: req.user.id,
         items: {
-          create: items|| [],
+          create: items || [],
         },
         ...rest,
       },
@@ -23,7 +23,7 @@ export const work_orderPOST = async (
       data: data1,
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).send(error.message);
   }
 };
