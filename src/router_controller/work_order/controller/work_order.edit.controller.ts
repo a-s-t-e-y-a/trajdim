@@ -12,7 +12,7 @@ export const work_orderPUT = async (
   try {
     const { id, items, ...rest } = req.body;
     const data1 = await prisma.work_order.update({
-      where: { id:req.params.id }, // Assuming the work order ID is provided in the request body
+      where: { id: req.params.id }, // Assuming the work order ID is provided in the request body
       data: {
         user: req.user.id,
         items: {

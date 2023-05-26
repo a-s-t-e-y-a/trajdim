@@ -10,11 +10,11 @@ export const work_orderDELETE = async (
   res: Response
 ): Promise<any> => {
   try {
-    const { id } = req.params; 
+    const { id } = req.params;
     await prisma.work_order.delete({
-      where: { id:req.params.id },
+      where: { id: req.params.id },
       include: {
-        items: true, 
+        items: true,
       },
     });
     res.status(200).json({

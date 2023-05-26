@@ -8,7 +8,7 @@ import { work_orderGET } from "./controller/work_order.get.controller";
 const work_order = express.Router();
 
 work_order.post("/work_order", authenticateToken, work_orderPOST);
-work_order.put('/work_order/:id',authenticateToken,work_orderPUT)
-work_order.delete('/work_order/:id',authenticateToken,work_orderDELETE)
-work_order.get('/work_order/:id',authenticateToken,work_orderGET)
+work_order.put("/work_order/:id", authenticateToken, work_orderPUT);
+work_order.delete("/work_order/:id", authenticateToken, work_orderDELETE);
+work_order.get("/work_order/:id", authenticateToken, work_orderGET);
 export default work_order;

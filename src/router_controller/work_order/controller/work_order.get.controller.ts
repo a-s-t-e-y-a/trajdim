@@ -10,11 +10,11 @@ export const work_orderGET = async (
   res: Response
 ): Promise<any> => {
   try {
-    const { id } = req.params; 
+    const { id } = req.params;
     const workOrder = await prisma.work_order.findUnique({
-      where: { id:req.params.id },
+      where: { id: req.params.id },
       include: {
-        items: true, 
+        items: true,
       },
     });
 
