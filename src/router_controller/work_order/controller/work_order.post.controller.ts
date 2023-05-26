@@ -8,11 +8,15 @@ export const work_orderPOST = async (
   res: Response
 ): Promise<any> => {
   try {
+    const {item,...rest} = req.body
     const data1 = await prisma.work_order.create({
       data: {
-        ...req.body,
         user: req.user.id,
-      },
+        item:{
+          create:item || []
+        },
+        ...rest
+      }
     });
     res.status(200).json({
       message: "work order created successfuly",

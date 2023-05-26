@@ -86,6 +86,23 @@ model Team {
     order_occuring String
     order_note String
     assign Json?
+    subtotal String
+    discount String
+    tax String
+    total String
+    items Item[]
    }
+
+model Item {
+     id       String    @id @default(auto()) @map("_id") @db.ObjectId 
+    user String @db.ObjectId
+    name String
+    price String
+    per String
+    Work   Work_order @relation(fields: [WorkId], references: [id])
+    WorkId String @db.ObjectId
+  }
+
+
 
 
