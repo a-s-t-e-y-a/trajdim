@@ -14,18 +14,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.work_orderPOST = void 0;
+exports.work_orderPUT = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
-const work_orderPOST = async (req, res) => {
+const work_orderPUT = async (req, res) => {
     try {
-        const _a = req.body, { items } = _a, rest = __rest(_a, ["items"]);
-        const data1 = await helper_1.default.work_order.create({
+        const _a = req.body, { id, items } = _a, rest = __rest(_a, ["id", "items"]);
+        const data1 = await helper_1.default.work_order.update({
+            where: { id: req.params.id },
             data: Object.assign({ user: req.user.id, items: {
                     create: items || [],
                 } }, rest),
         });
         res.status(200).json({
-            message: "work order created successfuly",
+            message: "work order updated successfully",
             data: data1,
         });
     }
@@ -33,5 +34,5 @@ const work_orderPOST = async (req, res) => {
         res.status(500).send(error.message);
     }
 };
-exports.work_orderPOST = work_orderPOST;
-//# sourceMappingURL=work_order.post.controller.js.map
+exports.work_orderPUT = work_orderPUT;
+//# sourceMappingURL=work_order.edit.controller.js.map
