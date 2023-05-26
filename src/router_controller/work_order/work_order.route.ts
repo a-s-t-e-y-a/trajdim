@@ -1,5 +1,5 @@
 import express from "express";
-import authenticateToken from "middleware/auth";
+import authenticateToken from "../../middleware/auth";
 import { work_orderPOST } from "./controller/work_order.post.controller";
 
 const work_order = express.Router();
