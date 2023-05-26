@@ -1,35 +1,30 @@
- model Work_order{
-        id       String    @id @default(auto()) @map("_id") @db.ObjectId
-    user String @db.ObjectId
-    date String
-    from String
-    to String
-    coustmer_name String
-    note String?
-    through String
-    service_name String
-    order_location String
-    order_duration String
-    order_occuring String
-    order_note String
-    assign Json?
-    subtotal String
-    discount String
-    tax String
-    total String
-    items Item[]
-   }
+model Work_order {
+  id             String  @id @default(auto()) @map("_id") @db.ObjectId
+  user           String  @db.ObjectId
+  date           String
+  from           String
+  to             String
+  coustmer_name  String
+  note           String?
+  through        String
+  service_name   String
+  order_location String
+  order_duration String
+  order_occuring String
+  order_note     String
+  assign         Json?
+  subtotal       String
+  discount       String
+  tax            String
+  total          String
+  items          Item[]
+}
 
 model Item {
-     id       String    @id @default(auto()) @map("_id") @db.ObjectId 
-    user String @db.ObjectId
-    name String
-    price String
-    per String
-    Work   Work_order @relation(fields: [WorkId], references: [id])
-    WorkId String @db.ObjectId
-  }
-
-
-
-
+  id     String     @id @default(auto()) @map("_id") @db.ObjectId
+  name   String
+  price  String
+  per    String
+  Work   Work_order @relation(fields: [WorkId], references: [id])
+  WorkId String     @db.ObjectId
+}

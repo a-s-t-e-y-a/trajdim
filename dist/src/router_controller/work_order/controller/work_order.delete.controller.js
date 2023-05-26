@@ -7,19 +7,18 @@ exports.work_orderDELETE = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
 const work_orderDELETE = async (req, res) => {
     try {
-        const { id } = req.params;
-        await helper_1.default.work_order.delete({
+        const d1 = await helper_1.default.work_order.delete({
             where: { id: req.params.id },
             include: {
-                items: true,
-            },
+                items: true
+            }
         });
         res.status(200).json({
             message: "work order deleted successfully",
+            data: d1
         });
     }
     catch (error) {
-        console.log(error);
         res.status(500).send(error.message);
     }
 };

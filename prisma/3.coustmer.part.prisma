@@ -1,12 +1,10 @@
 model coustmer {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  user String @db.ObjectId
-  photo String
-  name String
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  user    String @db.ObjectId
+  photo   String
+  name    String
   address String
-  email String
-  phone Int
-  notes String
+  email   String
+  phone   Int
+  notes   String
 }
-
-
