@@ -1,3 +1,9 @@
-import { PrismaClient } from "@prisma/client";
-declare const prisma: PrismaClient<import(".prisma/client").Prisma.PrismaClientOptions, never, import(".prisma/client").Prisma.RejectOnNotFound | import(".prisma/client").Prisma.RejectPerOperation>;
+import { PrismaClient } from '@prisma/client';
+declare const prisma: PrismaClient<{
+    datasources: {
+        db: {
+            url: string;
+        };
+    };
+}, never, false>;
 export default prisma;
