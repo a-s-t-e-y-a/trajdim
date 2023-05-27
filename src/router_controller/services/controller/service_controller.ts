@@ -9,7 +9,16 @@ export const servicesPost = async (
   req: AuthenticatedRequest,
   res: Response
 ): Promise<any> => {
-  const { term, AvailableDays, Location, Coustmer_details, QuestionSchema, assignTo, Estimate, ...rest } = req.body;
+  const {
+    term,
+    AvailableDays,
+    Location,
+    Coustmer_details,
+    QuestionSchema,
+    assignTo,
+    Estimate,
+    ...rest
+  } = req.body;
 
   try {
     const data = await prisma.services.create({
@@ -54,7 +63,7 @@ export const servicesPost = async (
       data: data,
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).send(error.message);
   }
 };

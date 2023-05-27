@@ -32,5 +32,5 @@ app.use("/trajdim", uploads);
 app.use("/trajdim", coustmer);
 app.use("/trajdim", team);
 app.use("/trajdim", work_order);
-app.use('/trajdim',services)
+app.use("/trajdim", services);
 export default app;
