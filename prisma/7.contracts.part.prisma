@@ -1,0 +1,12 @@
+model contracts  {
+    id       String    @id @default(auto()) @map("_id") @db.ObjectId 
+    user String @db.ObjectId
+    name String
+    created_by String
+    file_name String
+    signed_no String
+    dismissed_no String
+    created_at String
+}
+
+

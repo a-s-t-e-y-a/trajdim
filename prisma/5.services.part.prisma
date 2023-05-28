@@ -1,32 +1,23 @@
 model Services {
-    id               String             @id @default(auto()) @map("_id") @db.ObjectId
-    user             String             @db.ObjectId
-    ServicesName     String
-    Description      String
-    Color            String
-    Photo            String
-    term             Term[]
-    AvailableDays    AvailableDays[]
-    Location         Location[]
-    Coustmer_details Coustmer_details[]
-    QuestionSchema   QuestionSchema[]
-    assignTo         assignTo[]
-    Estimate         Estimate[]
+    id           String @id @default(auto()) @map("_id") @db.ObjectId
+    user         String @db.ObjectId
+    ServicesName String
+    Description  String
+    Color        String
+    Photo        String
 }
 
 model Term {
-    id         String   @id @default(auto()) @map("_id") @db.ObjectId
-    service    Services @relation(fields: [serviceId], references: [id])
-    serviceId  String   @db.ObjectId
-    ContractId String   @db.ObjectId
+    id         String  @id @default(auto()) @map("_id") @db.ObjectId
+    ContractId String  @db.ObjectId
+    ServiceId  String  @db.ObjectId
     Radio      Boolean
     Notes      String
 }
 
 model AvailableDays {
-    id            String   @id @default(auto()) @map("_id") @db.ObjectId
-    service       Services @relation(fields: [serviceId], references: [id])
-    serviceId     String   @db.ObjectId
+    id            String  @id @default(auto()) @map("_id") @db.ObjectId
+    ServiceId     String  @db.ObjectId
     Days          Json?
     From          String
     To            String
@@ -37,25 +28,22 @@ model AvailableDays {
 }
 
 model Location {
-    id                String   @id @default(auto()) @map("_id") @db.ObjectId
-    service           Services @relation(fields: [serviceId], references: [id])
-    serviceId         String   @db.ObjectId
+    id                String @id @default(auto()) @map("_id") @db.ObjectId
+    ServiceId         String @db.ObjectId
     arrayOfObjCountry Json?
 }
 
 model Coustmer_details {
-    id            String   @id @default(auto()) @map("_id") @db.ObjectId
-    service       Services @relation(fields: [serviceId], references: [id])
-    serviceId     String   @db.ObjectId
+    id            String @id @default(auto()) @map("_id") @db.ObjectId
+    ServiceId     String @db.ObjectId
     detailsTitle  String
     Checkbox      String
     Question_type String
 }
 
 model QuestionSchema {
-    id                  String   @id @default(auto()) @map("_id") @db.ObjectId
-    service             Services @relation(fields: [serviceId], references: [id])
-    serviceId           String   @db.ObjectId
+    id                  String  @id @default(auto()) @map("_id") @db.ObjectId
+    ServiceId           String  @db.ObjectId
     questionText        String
     questionDescription String
     optionName          String
@@ -63,16 +51,14 @@ model QuestionSchema {
 }
 
 model assignTo {
-    id        String   @id @default(auto()) @map("_id") @db.ObjectId
-    service   Services @relation(fields: [serviceId], references: [id])
-    serviceId String   @db.ObjectId
+    id        String @id @default(auto()) @map("_id") @db.ObjectId
+    ServiceId String @db.ObjectId
     Assign    Json?
 }
 
 model Estimate {
-    id                   String   @id @default(auto()) @map("_id") @db.ObjectId
-    service              Services @relation(fields: [serviceId], references: [id])
-    serviceId            String   @db.ObjectId
+    id                   String  @id @default(auto()) @map("_id") @db.ObjectId
+    ServiceId            String  @db.ObjectId
     Customer_will_select String
     Services             Json?
     Discount             String
@@ -80,3 +66,5 @@ model Estimate {
     Recurring            Boolean
     Discount_per_time    String
 }
+
+

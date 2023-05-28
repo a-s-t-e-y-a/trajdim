@@ -16,38 +16,61 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.servicesPost = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
+const bluebird_1 = require("bluebird");
 const servicesPost = async (req, res) => {
     const _a = req.body, { term, AvailableDays, Location, Coustmer_details, QuestionSchema, assignTo, Estimate } = _a, rest = __rest(_a, ["term", "AvailableDays", "Location", "Coustmer_details", "QuestionSchema", "assignTo", "Estimate"]);
     try {
-        const data = await helper_1.default.services.create({
-            data: Object.assign({ user: req.user.id, term: {
-                    create: term || [],
-                }, AvailableDays: {
-                    create: AvailableDays || [],
-                }, Location: {
-                    create: Location || [],
-                }, Coustmer_details: {
-                    create: Coustmer_details || [],
-                }, QuestionSchema: {
-                    create: QuestionSchema || [],
-                }, assignTo: {
-                    create: assignTo || [],
-                }, Estimate: {
-                    create: Estimate || [],
-                } }, rest),
-            include: {
-                term: true,
-                AvailableDays: true,
-                Location: true,
-                Coustmer_details: true,
-                QuestionSchema: true,
-                assignTo: true,
-                Estimate: true,
-            },
+        const services = await helper_1.default.services.create({
+            data: Object.assign({ user: req.user.id }, rest),
         });
+        const Term = await bluebird_1.Promise.map(term, async (termItem) => {
+            return helper_1.default.term.create({
+                data: Object.assign({ ServiceId: services.id }, termItem),
+            });
+        });
+        const availableDays = await bluebird_1.Promise.map(AvailableDays, async (AvailableDaysItem) => {
+            return helper_1.default.availableDays.create({
+                data: Object.assign({ ServiceId: services.id }, AvailableDaysItem),
+            });
+        });
+        const location = await bluebird_1.Promise.map(Location, async (LocationItem) => {
+            return helper_1.default.location.create({
+                data: Object.assign({ ServiceId: services.id }, LocationItem),
+            });
+        });
+        const coustmer_details = await bluebird_1.Promise.map(Coustmer_details, async (Coustmer_detailsItem) => {
+            return helper_1.default.coustmer_details.create({
+                data: Object.assign({ ServiceId: services.id }, Coustmer_detailsItem),
+            });
+        });
+        const questionSchema = await bluebird_1.Promise.map(QuestionSchema, async (QuestionSchemaItem) => {
+            return helper_1.default.questionSchema.create({
+                data: Object.assign({ ServiceId: services.id }, QuestionSchemaItem),
+            });
+        });
+        const AssignTo = await bluebird_1.Promise.map(assignTo, async (assignToItem) => {
+            return helper_1.default.assignTo.create({
+                data: Object.assign({ ServiceId: services.id }, assignToItem),
+            });
+        });
+        const estimate = await bluebird_1.Promise.map(Estimate, async (EstimateItem) => {
+            return helper_1.default.estimate.create({
+                data: Object.assign({ ServiceId: services.id }, EstimateItem),
+            });
+        });
+        console.log(Term);
         res.status(200).json({
             message: "Service created successfully",
-            data: data,
+            data: {
+                services,
+                Term,
+                availableDays,
+                location,
+                coustmer_details,
+                questionSchema,
+                AssignTo,
+                estimate,
+            },
         });
     }
     catch (error) {
