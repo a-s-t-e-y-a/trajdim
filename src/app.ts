@@ -26,6 +26,7 @@ import coustmer from "./router_controller/coustmer/coustmer_route";
 import team from "./router_controller/teams/teams_route";
 import work_order from "./router_controller/work_order/work_order.route";
 import services from "./router_controller/services/service_route";
+import contract from "./router_controller/contracts/contracts_route";
 app.use("/trajdim", signup);
 app.use("/trajdim", loginRoute);
 app.use("/trajdim", uploads);
@@ -33,4 +34,5 @@ app.use("/trajdim", coustmer);
 app.use("/trajdim", team);
 app.use("/trajdim", work_order);
 app.use("/trajdim", services);
+app.use('/trajdim',contract)
 export default app;
