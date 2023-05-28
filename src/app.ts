@@ -34,5 +34,5 @@ app.use("/trajdim", coustmer);
 app.use("/trajdim", team);
 app.use("/trajdim", work_order);
 app.use("/trajdim", services);
-app.use('/trajdim',contract)
+app.use("/trajdim", contract);
 export default app;

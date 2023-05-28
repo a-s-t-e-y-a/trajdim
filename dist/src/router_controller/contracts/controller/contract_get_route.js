@@ -9,7 +9,7 @@ const getContractsById = async (req, res) => {
     try {
         const contracts = await helper_1.default.contracts.findUnique({
             where: {
-                id: req.params.id
+                id: req.params.id,
             },
         });
         res.status(200).json(contracts);

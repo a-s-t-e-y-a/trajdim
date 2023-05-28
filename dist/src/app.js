@@ -34,6 +34,6 @@ app.use("/trajdim", coustmer_route_1.default);
 app.use("/trajdim", teams_route_1.default);
 app.use("/trajdim", work_order_route_1.default);
 app.use("/trajdim", service_route_1.default);
-app.use('/trajdim', contracts_route_1.default);
+app.use("/trajdim", contracts_route_1.default);
 exports.default = app;
 //# sourceMappingURL=app.js.map
