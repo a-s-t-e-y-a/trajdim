@@ -11,8 +11,8 @@ const servicesGetUnique = async (req, res) => {
         const services = await helper_1.default.services.findMany({
             where: {
                 id: req.params.id,
-                user: req.user.id
-            }
+                user: req.user.id,
+            },
         });
         const termPromises = services.map((service) => helper_1.default.term.findMany({
             where: {

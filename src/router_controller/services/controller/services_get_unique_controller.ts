@@ -12,10 +12,10 @@ export const servicesGetUnique = async (
 ): Promise<any> => {
   try {
     const services = await prisma.services.findMany({
-        where:{
-            id:req.params.id,
-            user:req.user.id
-        }
+      where: {
+        id: req.params.id,
+        user: req.user.id,
+      },
     });
 
     const termPromises = services.map((service) =>

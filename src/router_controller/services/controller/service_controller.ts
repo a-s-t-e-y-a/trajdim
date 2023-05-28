@@ -24,7 +24,7 @@ export const servicesPost = async (
   try {
     const services = await prisma.services.create({
       data: {
-        user:req.user.id,
+        user: req.user.id,
         ...rest,
       },
     });
@@ -38,14 +38,17 @@ export const servicesPost = async (
       });
     });
 
-    const availableDays = await Promise.map(AvailableDays, async (AvailableDaysItem) => {
-      return prisma.availableDays.create({
-        data: {
-          ServiceId: services.id,
-          ...AvailableDaysItem,
-        },
-      });
-    });
+    const availableDays = await Promise.map(
+      AvailableDays,
+      async (AvailableDaysItem) => {
+        return prisma.availableDays.create({
+          data: {
+            ServiceId: services.id,
+            ...AvailableDaysItem,
+          },
+        });
+      }
+    );
 
     const location = await Promise.map(Location, async (LocationItem) => {
       return prisma.location.create({
@@ -56,23 +59,29 @@ export const servicesPost = async (
       });
     });
 
-    const coustmer_details = await Promise.map(Coustmer_details, async (Coustmer_detailsItem) => {
-      return prisma.coustmer_details.create({
-        data: {
-          ServiceId: services.id,
-          ...Coustmer_detailsItem,
-        },
-      });
-    });
+    const coustmer_details = await Promise.map(
+      Coustmer_details,
+      async (Coustmer_detailsItem) => {
+        return prisma.coustmer_details.create({
+          data: {
+            ServiceId: services.id,
+            ...Coustmer_detailsItem,
+          },
+        });
+      }
+    );
 
-    const questionSchema = await Promise.map(QuestionSchema, async (QuestionSchemaItem) => {
-      return prisma.questionSchema.create({
-        data: {
-          ServiceId: services.id,
-          ...QuestionSchemaItem,
-        },
-      });
-    });
+    const questionSchema = await Promise.map(
+      QuestionSchema,
+      async (QuestionSchemaItem) => {
+        return prisma.questionSchema.create({
+          data: {
+            ServiceId: services.id,
+            ...QuestionSchemaItem,
+          },
+        });
+      }
+    );
 
     const AssignTo = await Promise.map(assignTo, async (assignToItem) => {
       return prisma.assignTo.create({
@@ -91,7 +100,7 @@ export const servicesPost = async (
         },
       });
     });
-console.log(Term)
+    console.log(Term);
     res.status(200).json({
       message: "Service created successfully",
       data: {

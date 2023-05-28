@@ -1,17 +1,19 @@
-import prisma from '../../../config/helper'
+import prisma from "../../../config/helper";
 import { Request, Response } from "express";
-
 
 interface AuthenticatedRequest extends Request {
   user?: any;
 }
-export const createContract = async (req: AuthenticatedRequest, res: Response) => {
+export const createContract = async (
+  req: AuthenticatedRequest,
+  res: Response
+) => {
   try {
-    const {name, created_by, file_name, signed_no, dismissed_no } = req.body;
+    const { name, created_by, file_name, signed_no, dismissed_no } = req.body;
 
     const newContract = await prisma.contracts.create({
       data: {
-        user:req.user.id,
+        user: req.user.id,
         name,
         created_by,
         file_name,
@@ -27,4 +29,3 @@ export const createContract = async (req: AuthenticatedRequest, res: Response) =
     res.status(500).json({ error: "Internal server error" });
   }
 };
-
