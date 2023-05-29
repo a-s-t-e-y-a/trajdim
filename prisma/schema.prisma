@@ -100,7 +100,7 @@ model Coustmer_details {
     ServiceId     String @db.ObjectId
     detailsTitle  String
     Checkbox      String
-    Question_type Json?
+    Question_type String
 }
 
 model QuestionSchema {
