@@ -4,8 +4,8 @@ model contracts  {
     name String
     created_by String
     file_name String
-    signed_no String
-    dismissed_no String
+    signed_no String?
+    dismissed_no String?
     created_at String
 }
 
