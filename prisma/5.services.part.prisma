@@ -38,7 +38,7 @@ model Coustmer_details {
     ServiceId     String @db.ObjectId
     detailsTitle  String
     Checkbox      String
-    Question_type String
+    Question_type Json?
 }
 
 model QuestionSchema {
@@ -63,7 +63,7 @@ model Estimate {
     Services             Json?
     Discount             String
     Tax                  String
-    Recurring            Boolean
+    Recurring            String
     Discount_per_time    String
 }
 
