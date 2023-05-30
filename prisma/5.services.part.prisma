@@ -4,7 +4,7 @@ model Services {
     ServicesName String
     Description  String
     Color        String
-    Photo        String
+    Photo        String?
 }
 
 model Term {
