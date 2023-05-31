@@ -17,11 +17,10 @@ model Term {
 model AvailableDays {
     id            String  @id @default(auto()) @map("_id") @db.ObjectId
     ServiceId     String  @db.ObjectId
-    Days          Json?
-    From          String
-    To            String
+    details Json?
     rangeRadio    Boolean
     rangeTime     String?
+    hoursRange String
     Recurring     Boolean
     RecurringTime String?
 }
