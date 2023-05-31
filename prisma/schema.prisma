@@ -74,7 +74,6 @@ model Term {
     ContractId String  @db.ObjectId
     ServiceId  String  @db.ObjectId
     Radio      Boolean
-    Notes      String
 }
 
 model AvailableDays {
@@ -99,7 +98,7 @@ model Coustmer_details {
     id            String @id @default(auto()) @map("_id") @db.ObjectId
     ServiceId     String @db.ObjectId
     detailsTitle  String
-    Checkbox      String
+    Checkbox      Boolean
     Question_type String
 }
 
@@ -107,9 +106,8 @@ model QuestionSchema {
     id                  String  @id @default(auto()) @map("_id") @db.ObjectId
     ServiceId           String  @db.ObjectId
     questionText        String
-    questionDescription String
-    optionName          String
-    Radio               Boolean
+    question_select     String
+   
 }
 
 model assignTo {
