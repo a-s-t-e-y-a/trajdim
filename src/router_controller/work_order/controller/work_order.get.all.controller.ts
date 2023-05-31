@@ -11,7 +11,11 @@ export const work_orderGETAll = async (
 ): Promise<any> => {
   try {
     const { id } = req.params;
-    const workOrder = await prisma.work_order.findMany();
+    const workOrder = await prisma.work_order.findMany({
+      include: {
+        items: true,
+      },
+    });
 
     if (!workOrder) {
       return res.status(404).json({
