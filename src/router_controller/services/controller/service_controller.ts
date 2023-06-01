@@ -71,7 +71,6 @@ export const servicesPost = async (
       }
     );
 
-
     const AssignTo = await Promise.map(assignTo, async (assignToItem) => {
       return prisma.assignTo.create({
         data: {
