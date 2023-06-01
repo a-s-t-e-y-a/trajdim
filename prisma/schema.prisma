@@ -61,8 +61,8 @@ model Access {
    add     Boolean @default(false)
 }
 model Services {
-    id           String @id @default(auto()) @map("_id") @db.ObjectId
-    user         String @db.ObjectId
+    id           String  @id @default(auto()) @map("_id") @db.ObjectId
+    user         String  @db.ObjectId
     ServicesName String
     Description  String
     Color        String
@@ -79,10 +79,10 @@ model Term {
 model AvailableDays {
     id            String  @id @default(auto()) @map("_id") @db.ObjectId
     ServiceId     String  @db.ObjectId
-    details Json?
+    details       Json?
     rangeRadio    Boolean
     rangeTime     String?
-    hoursRange String
+    hoursRange    String
     Recurring     Boolean
     RecurringTime String?
 }
@@ -94,19 +94,18 @@ model Location {
 }
 
 model Coustmer_details {
-    id            String @id @default(auto()) @map("_id") @db.ObjectId
-    ServiceId     String @db.ObjectId
+    id            String  @id @default(auto()) @map("_id") @db.ObjectId
+    ServiceId     String  @db.ObjectId
     detailsTitle  String
     Checkbox      Boolean
     Question_type String
 }
 
 model QuestionSchema {
-    id                  String  @id @default(auto()) @map("_id") @db.ObjectId
-    ServiceId           String  @db.ObjectId
-    questionText        String
-    question_select     String
-   
+    id              String @id @default(auto()) @map("_id") @db.ObjectId
+    ServiceId       String @db.ObjectId
+    questionDetails   Json?
+
 }
 
 model assignTo {
@@ -116,8 +115,8 @@ model assignTo {
 }
 
 model Estimate {
-    id                   String  @id @default(auto()) @map("_id") @db.ObjectId
-    ServiceId            String  @db.ObjectId
+    id                   String @id @default(auto()) @map("_id") @db.ObjectId
+    ServiceId            String @db.ObjectId
     Customer_will_select String
     Services             Json?
     Discount             String
@@ -125,8 +124,6 @@ model Estimate {
     Recurring            String
     Discount_per_time    String
 }
-
-
 model Work_order {
   id             String  @id @default(auto()) @map("_id") @db.ObjectId
   user           String  @db.ObjectId

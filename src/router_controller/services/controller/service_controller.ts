@@ -71,17 +71,6 @@ export const servicesPost = async (
       }
     );
 
-    const questionSchema = await Promise.map(
-      QuestionSchema,
-      async (QuestionSchemaItem) => {
-        return prisma.questionSchema.create({
-          data: {
-            ServiceId: services.id,
-            ...QuestionSchemaItem,
-          },
-        });
-      }
-    );
 
     const AssignTo = await Promise.map(assignTo, async (assignToItem) => {
       return prisma.assignTo.create({
@@ -109,7 +98,6 @@ export const servicesPost = async (
         availableDays,
         location,
         coustmer_details,
-        questionSchema,
         AssignTo,
         estimate,
       },

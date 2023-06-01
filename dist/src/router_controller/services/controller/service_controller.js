@@ -43,11 +43,6 @@ const servicesPost = async (req, res) => {
                 data: Object.assign({ ServiceId: services.id }, Coustmer_detailsItem),
             });
         });
-        const questionSchema = await bluebird_1.Promise.map(QuestionSchema, async (QuestionSchemaItem) => {
-            return helper_1.default.questionSchema.create({
-                data: Object.assign({ ServiceId: services.id }, QuestionSchemaItem),
-            });
-        });
         const AssignTo = await bluebird_1.Promise.map(assignTo, async (assignToItem) => {
             return helper_1.default.assignTo.create({
                 data: Object.assign({ ServiceId: services.id }, assignToItem),
@@ -67,7 +62,6 @@ const servicesPost = async (req, res) => {
                 availableDays,
                 location,
                 coustmer_details,
-                questionSchema,
                 AssignTo,
                 estimate,
             },
