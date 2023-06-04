@@ -34,16 +34,7 @@ model Location {
 model Coustmer_details {
     id            String  @id @default(auto()) @map("_id") @db.ObjectId
     ServiceId     String  @db.ObjectId
-    detailsTitle  String
-    Checkbox      Boolean
-    Question_type String
-}
-
-model QuestionSchema {
-    id              String @id @default(auto()) @map("_id") @db.ObjectId
-    ServiceId       String @db.ObjectId
     questionDetails   Json?
-
 }
 
 model assignTo {
@@ -55,10 +46,10 @@ model assignTo {
 model Estimate {
     id                   String @id @default(auto()) @map("_id") @db.ObjectId
     ServiceId            String @db.ObjectId
-    Customer_will_select String
+    Customer_will_select String?
     Services             Json?
     Discount             String
     Tax                  String
-    Recurring            String
+    Recurring            String?
     Discount_per_time    String
 }

@@ -86,18 +86,18 @@ export const servicesEdit = async (
       })),
     });
 
-    await prisma.questionSchema.deleteMany({
-      where: {
-        ServiceId: serviceId,
-      },
-    });
-    await prisma.questionSchema.createMany({
-      data: QuestionSchema.map((q) => ({
-        user: req.user.id,
-        ServiceId: serviceId,
-        ...q,
-      })),
-    });
+    // await prisma.questionSchema.deleteMany({
+    //   where: {
+    //     ServiceId: serviceId,
+    //   },
+    // });
+    // await prisma.questionSchema.createMany({
+    //   data: QuestionSchema.map((q) => ({
+    //     user: req.user.id,
+    //     ServiceId: serviceId,
+    //     ...q,
+    //   })),
+    // });
 
     await prisma.assignTo.deleteMany({
       where: {

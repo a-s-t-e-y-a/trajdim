@@ -49,14 +49,14 @@ export const servicesGetAll = async (
     );
     const coustmerDetailsResults = await Promise.all(coustmerDetailsPromises);
 
-    const questionSchemaPromises = services.map((service) =>
-      prisma.questionSchema.findMany({
-        where: {
-          ServiceId: service.id,
-        },
-      })
-    );
-    const questionSchemaResults = await Promise.all(questionSchemaPromises);
+    // const questionSchemaPromises = services.map((service) =>
+    //   prisma.questionSchema.findMany({
+    //     where: {
+    //       ServiceId: service.id,
+    //     },
+    //   })
+    // );
+    // const questionSchemaResults = await Promise.all(questionSchemaPromises);
 
     const assignToPromises = services.map((service) =>
       prisma.assignTo.findMany({
@@ -82,7 +82,7 @@ export const servicesGetAll = async (
       availableDays: availableDaysResults[index],
       location: locationResults[index],
       coustmer_details: coustmerDetailsResults[index],
-      questionSchema: questionSchemaResults[index],
+      // questionSchema: questionSchemaResults[index],
       assignTo: assignToResults[index],
       estimate: estimateResults[index],
     }));
