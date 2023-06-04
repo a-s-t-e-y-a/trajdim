@@ -38,12 +38,14 @@ const servicesGetUnique = async (req, res) => {
             },
         }));
         const coustmerDetailsResults = await bluebird_1.Promise.all(coustmerDetailsPromises);
-        const questionSchemaPromises = services.map((service) => helper_1.default.questionSchema.findMany({
-            where: {
-                ServiceId: service.id,
-            },
-        }));
-        const questionSchemaResults = await bluebird_1.Promise.all(questionSchemaPromises);
+        // const questionSchemaPromises = services.map((service) =>
+        //   prisma.questionSchema.findMany({
+        //     where: {
+        //       ServiceId: service.id,
+        //     },
+        //   })
+        // );
+        // const questionSchemaResults = await Promise.all(questionSchemaPromises);
         const assignToPromises = services.map((service) => helper_1.default.assignTo.findMany({
             where: {
                 ServiceId: service.id,
@@ -62,7 +64,7 @@ const servicesGetUnique = async (req, res) => {
             availableDays: availableDaysResults[index],
             location: locationResults[index],
             coustmer_details: coustmerDetailsResults[index],
-            questionSchema: questionSchemaResults[index],
+            // questionSchema: questionSchemaResults[index],
             assignTo: assignToResults[index],
             estimate: estimateResults[index],
         }));

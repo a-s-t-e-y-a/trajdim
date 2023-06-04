@@ -35,11 +35,11 @@ const servicesDelete = async (req, res) => {
                 ServiceId: serviceId,
             },
         });
-        await helper_1.default.questionSchema.deleteMany({
-            where: {
-                ServiceId: serviceId,
-            },
-        });
+        // await prisma.questionSchema.deleteMany({
+        //   where: {
+        //     ServiceId: serviceId,
+        //   },
+        // });
         await helper_1.default.assignTo.deleteMany({
             where: {
                 ServiceId: serviceId,

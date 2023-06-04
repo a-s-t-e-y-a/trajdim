@@ -60,14 +60,18 @@ const servicesEdit = async (req, res) => {
         await helper_1.default.coustmer_details.createMany({
             data: Coustmer_details.map((c) => (Object.assign({ user: req.user.id, ServiceId: serviceId }, c))),
         });
-        await helper_1.default.questionSchema.deleteMany({
-            where: {
-                ServiceId: serviceId,
-            },
-        });
-        await helper_1.default.questionSchema.createMany({
-            data: QuestionSchema.map((q) => (Object.assign({ user: req.user.id, ServiceId: serviceId }, q))),
-        });
+        // await prisma.questionSchema.deleteMany({
+        //   where: {
+        //     ServiceId: serviceId,
+        //   },
+        // });
+        // await prisma.questionSchema.createMany({
+        //   data: QuestionSchema.map((q) => ({
+        //     user: req.user.id,
+        //     ServiceId: serviceId,
+        //     ...q,
+        //   })),
+        // });
         await helper_1.default.assignTo.deleteMany({
             where: {
                 ServiceId: serviceId,
