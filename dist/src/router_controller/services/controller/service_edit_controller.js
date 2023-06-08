@@ -1,102 +1,113 @@
 "use strict";
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.servicesEdit = void 0;
+exports.editEstimate = exports.editAssignTo = exports.editCustomerDetails = exports.editLocation = exports.editAvailableDays = exports.editTerm = exports.editServices = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
-const servicesEdit = async (req, res) => {
-    const { serviceId } = req.params;
-    const _a = req.body, { term, AvailableDays, Location, Coustmer_details, QuestionSchema, assignTo, Estimate } = _a, rest = __rest(_a, ["term", "AvailableDays", "Location", "Coustmer_details", "QuestionSchema", "assignTo", "Estimate"]);
+const editServices = async (req, res) => {
+    const { id } = req.params;
+    const { user, ServicesName, Description, Color, Photo } = req.body;
     try {
-        // Update the service
         const updatedService = await helper_1.default.services.update({
-            where: {
-                id: serviceId,
-            },
-            data: Object.assign({}, rest),
+            where: { id },
+            data: { user, ServicesName, Description, Color, Photo },
         });
-        // Update related data
-        await helper_1.default.term.deleteMany({
-            where: {
-                ServiceId: serviceId,
-            },
-        });
-        await helper_1.default.term.createMany({
-            data: term.map((t) => (Object.assign({ user: req.user.id, ServiceId: serviceId }, t))),
-        });
-        await helper_1.default.availableDays.deleteMany({
-            where: {
-                ServiceId: serviceId,
-            },
-        });
-        await helper_1.default.availableDays.createMany({
-            data: AvailableDays.map((a) => (Object.assign({ user: req.user.id, ServiceId: serviceId }, a))),
-        });
-        await helper_1.default.location.deleteMany({
-            where: {
-                ServiceId: serviceId,
-            },
-        });
-        await helper_1.default.location.createMany({
-            data: Location.map((l) => (Object.assign({ user: req.user.id, ServiceId: serviceId }, l))),
-        });
-        await helper_1.default.coustmer_details.deleteMany({
-            where: {
-                ServiceId: serviceId,
-            },
-        });
-        await helper_1.default.coustmer_details.createMany({
-            data: Coustmer_details.map((c) => (Object.assign({ user: req.user.id, ServiceId: serviceId }, c))),
-        });
-        // await prisma.questionSchema.deleteMany({
-        //   where: {
-        //     ServiceId: serviceId,
-        //   },
-        // });
-        // await prisma.questionSchema.createMany({
-        //   data: QuestionSchema.map((q) => ({
-        //     user: req.user.id,
-        //     ServiceId: serviceId,
-        //     ...q,
-        //   })),
-        // });
-        await helper_1.default.assignTo.deleteMany({
-            where: {
-                ServiceId: serviceId,
-            },
-        });
-        await helper_1.default.assignTo.createMany({
-            data: assignTo.map((a) => (Object.assign({ user: req.user.id, ServiceId: serviceId }, a))),
-        });
-        await helper_1.default.estimate.deleteMany({
-            where: {
-                ServiceId: serviceId,
-            },
-        });
-        await helper_1.default.estimate.createMany({
-            data: Estimate.map((e) => (Object.assign({ user: req.user.id, ServiceId: serviceId }, e))),
-        });
-        res.status(200).json({
-            message: "Service updated successfully",
-            data: updatedService,
-        });
+        res.status(200).json(updatedService);
     }
     catch (error) {
-        console.log(error);
-        res.status(500).send(error.message);
+        res.status(500).json({ error: 'Unable to update the service.' });
     }
 };
-exports.servicesEdit = servicesEdit;
+exports.editServices = editServices;
+const editTerm = async (req, res) => {
+    const { id } = req.params;
+    const { ContractId, ServiceId, Radio } = req.body;
+    try {
+        const updatedTerm = await helper_1.default.term.update({
+            where: { id },
+            data: { ContractId, ServiceId, Radio },
+        });
+        res.status(200).json(updatedTerm);
+    }
+    catch (error) {
+        res.status(500).json({ error: 'Unable to update the term.' });
+    }
+};
+exports.editTerm = editTerm;
+const editAvailableDays = async (req, res) => {
+    const { id } = req.params;
+    const { ServiceId, details, rangeRadio, rangeTime, hoursRange, Recurring, RecurringTime } = req.body;
+    try {
+        const updatedAvailableDays = await helper_1.default.availableDays.update({
+            where: { id },
+            data: { ServiceId, details, rangeRadio, rangeTime, hoursRange, Recurring, RecurringTime },
+        });
+        res.status(200).json(updatedAvailableDays);
+    }
+    catch (error) {
+        res.status(500).json({ error: 'Unable to update the available days.' });
+    }
+};
+exports.editAvailableDays = editAvailableDays;
+const editLocation = async (req, res) => {
+    const { id } = req.params;
+    const { ServiceId, arrayOfObjCountry } = req.body;
+    try {
+        const updatedLocation = await helper_1.default.location.update({
+            where: { id },
+            data: { ServiceId, arrayOfObjCountry },
+        });
+        res.status(200).json(updatedLocation);
+    }
+    catch (error) {
+        res.status(500).json({ error: 'Unable to update the location.' });
+    }
+};
+exports.editLocation = editLocation;
+const editCustomerDetails = async (req, res) => {
+    const { id } = req.params;
+    const { ServiceId, questionDetails } = req.body;
+    try {
+        const updatedCustomerDetails = await helper_1.default.coustmer_details.update({
+            where: { id },
+            data: { ServiceId, questionDetails },
+        });
+        res.status(200).json(updatedCustomerDetails);
+    }
+    catch (error) {
+        res.status(500).json({ error: 'Unable to update the customer details.' });
+    }
+};
+exports.editCustomerDetails = editCustomerDetails;
+const editAssignTo = async (req, res) => {
+    const { id } = req.params;
+    const { ServiceId, Assign } = req.body;
+    try {
+        const updatedAssignTo = await helper_1.default.assignTo.update({
+            where: { id },
+            data: { ServiceId, Assign },
+        });
+        res.status(200).json(updatedAssignTo);
+    }
+    catch (error) {
+        res.status(500).json({ error: 'Unable to update the assignee.' });
+    }
+};
+exports.editAssignTo = editAssignTo;
+const editEstimate = async (req, res) => {
+    const { id } = req.params;
+    const { ServiceId, Customer_will_select, Services, Discount, Tax, Recurring, Discount_per_time } = req.body;
+    try {
+        const updatedEstimate = await helper_1.default.estimate.update({
+            where: { id },
+            data: { ServiceId, Customer_will_select, Services, Discount, Tax, Recurring, Discount_per_time },
+        });
+        res.status(200).json(updatedEstimate);
+    }
+    catch (error) {
+        res.status(500).json({ error: 'Unable to update the estimate.' });
+    }
+};
+exports.editEstimate = editEstimate;
 //# sourceMappingURL=service_edit_controller.js.map
