@@ -6,7 +6,10 @@ interface AuthenticatedRequest extends Request {
   user?: any;
 }
 
-export const editServices = async (req: AuthenticatedRequest, res: Response) => {
+export const editServices = async (
+  req: AuthenticatedRequest,
+  res: Response
+) => {
   const { id } = req.params;
   const { user, ServicesName, Description, Color, Photo } = req.body;
 
@@ -18,7 +21,7 @@ export const editServices = async (req: AuthenticatedRequest, res: Response) => 
 
     res.status(200).json(updatedService);
   } catch (error) {
-    res.status(500).json({ error: 'Unable to update the service.' });
+    res.status(500).json({ error: "Unable to update the service." });
   }
 };
 
@@ -34,22 +37,38 @@ export const editTerm = async (req: Request, res: Response) => {
 
     res.status(200).json(updatedTerm);
   } catch (error) {
-    res.status(500).json({ error: 'Unable to update the term.' });
+    res.status(500).json({ error: "Unable to update the term." });
   }
 };
 export const editAvailableDays = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { ServiceId, details, rangeRadio, rangeTime, hoursRange, Recurring, RecurringTime } = req.body;
+  const {
+    ServiceId,
+    details,
+    rangeRadio,
+    rangeTime,
+    hoursRange,
+    Recurring,
+    RecurringTime,
+  } = req.body;
 
   try {
     const updatedAvailableDays = await prisma.availableDays.update({
       where: { id },
-      data: { ServiceId, details, rangeRadio, rangeTime, hoursRange, Recurring, RecurringTime },
+      data: {
+        ServiceId,
+        details,
+        rangeRadio,
+        rangeTime,
+        hoursRange,
+        Recurring,
+        RecurringTime,
+      },
     });
 
     res.status(200).json(updatedAvailableDays);
   } catch (error) {
-    res.status(500).json({ error: 'Unable to update the available days.' });
+    res.status(500).json({ error: "Unable to update the available days." });
   }
 };
 export const editLocation = async (req: Request, res: Response) => {
@@ -64,7 +83,7 @@ export const editLocation = async (req: Request, res: Response) => {
 
     res.status(200).json(updatedLocation);
   } catch (error) {
-    res.status(500).json({ error: 'Unable to update the location.' });
+    res.status(500).json({ error: "Unable to update the location." });
   }
 };
 export const editCustomerDetails = async (req: Request, res: Response) => {
@@ -79,7 +98,7 @@ export const editCustomerDetails = async (req: Request, res: Response) => {
 
     res.status(200).json(updatedCustomerDetails);
   } catch (error) {
-    res.status(500).json({ error: 'Unable to update the customer details.' });
+    res.status(500).json({ error: "Unable to update the customer details." });
   }
 };
 export const editAssignTo = async (req: Request, res: Response) => {
@@ -94,21 +113,37 @@ export const editAssignTo = async (req: Request, res: Response) => {
 
     res.status(200).json(updatedAssignTo);
   } catch (error) {
-    res.status(500).json({ error: 'Unable to update the assignee.' });
+    res.status(500).json({ error: "Unable to update the assignee." });
   }
 };
 export const editEstimate = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { ServiceId, Customer_will_select, Services, Discount, Tax, Recurring, Discount_per_time } = req.body;
+  const {
+    ServiceId,
+    Customer_will_select,
+    Services,
+    Discount,
+    Tax,
+    Recurring,
+    Discount_per_time,
+  } = req.body;
 
   try {
     const updatedEstimate = await prisma.estimate.update({
       where: { id },
-      data: { ServiceId, Customer_will_select, Services, Discount, Tax, Recurring, Discount_per_time },
+      data: {
+        ServiceId,
+        Customer_will_select,
+        Services,
+        Discount,
+        Tax,
+        Recurring,
+        Discount_per_time,
+      },
     });
 
     res.status(200).json(updatedEstimate);
   } catch (error) {
-    res.status(500).json({ error: 'Unable to update the estimate.' });
+    res.status(500).json({ error: "Unable to update the estimate." });
   }
 };

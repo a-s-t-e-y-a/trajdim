@@ -16,7 +16,7 @@ const editServices = async (req, res) => {
         res.status(200).json(updatedService);
     }
     catch (error) {
-        res.status(500).json({ error: 'Unable to update the service.' });
+        res.status(500).json({ error: "Unable to update the service." });
     }
 };
 exports.editServices = editServices;
@@ -31,22 +31,30 @@ const editTerm = async (req, res) => {
         res.status(200).json(updatedTerm);
     }
     catch (error) {
-        res.status(500).json({ error: 'Unable to update the term.' });
+        res.status(500).json({ error: "Unable to update the term." });
     }
 };
 exports.editTerm = editTerm;
 const editAvailableDays = async (req, res) => {
     const { id } = req.params;
-    const { ServiceId, details, rangeRadio, rangeTime, hoursRange, Recurring, RecurringTime } = req.body;
+    const { ServiceId, details, rangeRadio, rangeTime, hoursRange, Recurring, RecurringTime, } = req.body;
     try {
         const updatedAvailableDays = await helper_1.default.availableDays.update({
             where: { id },
-            data: { ServiceId, details, rangeRadio, rangeTime, hoursRange, Recurring, RecurringTime },
+            data: {
+                ServiceId,
+                details,
+                rangeRadio,
+                rangeTime,
+                hoursRange,
+                Recurring,
+                RecurringTime,
+            },
         });
         res.status(200).json(updatedAvailableDays);
     }
     catch (error) {
-        res.status(500).json({ error: 'Unable to update the available days.' });
+        res.status(500).json({ error: "Unable to update the available days." });
     }
 };
 exports.editAvailableDays = editAvailableDays;
@@ -61,7 +69,7 @@ const editLocation = async (req, res) => {
         res.status(200).json(updatedLocation);
     }
     catch (error) {
-        res.status(500).json({ error: 'Unable to update the location.' });
+        res.status(500).json({ error: "Unable to update the location." });
     }
 };
 exports.editLocation = editLocation;
@@ -76,7 +84,7 @@ const editCustomerDetails = async (req, res) => {
         res.status(200).json(updatedCustomerDetails);
     }
     catch (error) {
-        res.status(500).json({ error: 'Unable to update the customer details.' });
+        res.status(500).json({ error: "Unable to update the customer details." });
     }
 };
 exports.editCustomerDetails = editCustomerDetails;
@@ -91,22 +99,30 @@ const editAssignTo = async (req, res) => {
         res.status(200).json(updatedAssignTo);
     }
     catch (error) {
-        res.status(500).json({ error: 'Unable to update the assignee.' });
+        res.status(500).json({ error: "Unable to update the assignee." });
     }
 };
 exports.editAssignTo = editAssignTo;
 const editEstimate = async (req, res) => {
     const { id } = req.params;
-    const { ServiceId, Customer_will_select, Services, Discount, Tax, Recurring, Discount_per_time } = req.body;
+    const { ServiceId, Customer_will_select, Services, Discount, Tax, Recurring, Discount_per_time, } = req.body;
     try {
         const updatedEstimate = await helper_1.default.estimate.update({
             where: { id },
-            data: { ServiceId, Customer_will_select, Services, Discount, Tax, Recurring, Discount_per_time },
+            data: {
+                ServiceId,
+                Customer_will_select,
+                Services,
+                Discount,
+                Tax,
+                Recurring,
+                Discount_per_time,
+            },
         });
         res.status(200).json(updatedEstimate);
     }
     catch (error) {
-        res.status(500).json({ error: 'Unable to update the estimate.' });
+        res.status(500).json({ error: "Unable to update the estimate." });
     }
 };
 exports.editEstimate = editEstimate;

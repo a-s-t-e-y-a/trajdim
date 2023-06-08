@@ -4,7 +4,15 @@ import { servicesPost } from "./controller/service_controller";
 import { servicesGetAll } from "./controller/service_get_controller";
 import { servicesGetUnique } from "./controller/services_get_unique_controller";
 import { servicesDelete } from "./controller/services_delete_controller";
-import { editAssignTo, editAvailableDays, editCustomerDetails, editEstimate, editLocation, editServices, editTerm } from "./controller/service_edit_controller";
+import {
+  editAssignTo,
+  editAvailableDays,
+  editCustomerDetails,
+  editEstimate,
+  editLocation,
+  editServices,
+  editTerm,
+} from "./controller/service_edit_controller";
 
 const services = express.Router();
 services.post("/services", authenticateToken, servicesPost);
