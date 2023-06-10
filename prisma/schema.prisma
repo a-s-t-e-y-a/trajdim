@@ -67,6 +67,8 @@ model Services {
     Description  String
     Color        String
     Photo        String?
+    Notes       String?
+    date       String?
 }
 
 model Term {
