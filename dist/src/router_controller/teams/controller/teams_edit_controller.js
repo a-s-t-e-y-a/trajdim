@@ -24,9 +24,11 @@ const teamsEdit = async (req, res) => {
                 id: req.params.id,
             },
             data: Object.assign({ schedule: {
-                    create: schedule || [],
+                    deleteMany: {},
+                    create: schedule || [], // Create new schedule records if provided
                 }, access: {
-                    create: access || [],
+                    deleteMany: {},
+                    create: access || [], // Create new access records if provided
                 } }, rest),
             include: {
                 schedule: true,

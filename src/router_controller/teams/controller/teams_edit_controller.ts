@@ -17,10 +17,12 @@ export const teamsEdit = async (
       },
       data: {
         schedule: {
-          create: schedule || [],
+          deleteMany: {}, // Delete all existing schedule records
+          create: schedule || [], // Create new schedule records if provided
         },
         access: {
-          create: access || [],
+          deleteMany: {}, // Delete all existing access records
+          create: access || [], // Create new access records if provided
         },
         ...rest,
       },
@@ -38,3 +40,4 @@ export const teamsEdit = async (
     res.status(500).send(error.message);
   }
 };
+

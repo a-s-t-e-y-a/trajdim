@@ -1,9 +1,2 @@
-import { PrismaClient } from "@prisma/client";
-declare const prisma: PrismaClient<{
-    datasources: {
-        db: {
-            url: string;
-        };
-    };
-}, never, false>;
+declare const prisma: any;
 export default prisma;

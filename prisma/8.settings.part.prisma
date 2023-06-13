@@ -1,0 +1,13 @@
+model Coupon {
+    id           String  @id @default(auto()) @map("_id") @db.ObjectId
+    user         String  @db.ObjectId
+    name String
+    code String
+    discount String
+    specific_services Boolean?
+    services_selected Json?
+    expire_selected Boolean
+    expire_on String
+    total_no_selecte Boolean
+    total_no Int
+}
