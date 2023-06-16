@@ -171,7 +171,6 @@ model Coupon {
   total_no_selecte   Boolean
   total_no           Int
   created_at         DateTime @default(now())
-  expire_at          DateTime
   active             Boolean  @default(true)
 }
 
