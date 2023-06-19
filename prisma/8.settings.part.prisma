@@ -11,3 +11,36 @@ model Coupon {
     total_no_selecte Boolean
     total_no Int
 }
+
+model Appointment {
+    id           String  @id @default(auto()) @map("_id") @db.ObjectId
+    user         String  @db.ObjectId
+    time         String
+}
+
+model Business {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  user        String  @db.ObjectId
+  name        String
+  website     String
+  email       String
+  phone_no    String
+  sender_id   String
+  address     String
+  bank_name   String
+  bank_bsb    String
+  account     String
+  gst_option  String
+}
+
+model otherDetails {
+     id          String  @id @default(auto()) @map("_id") @db.ObjectId
+     user        String  @db.ObjectId
+     country     String
+     currency String
+     timeZone String
+     salaryRelease String
+     trackStaff String
+}
+
+

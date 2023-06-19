@@ -40,7 +40,9 @@ const twilio_1 = __importDefault(require("twilio"));
 const Tradiejam_Auth = process.env.Tradiejam_Auth_Token;
 const Tradiejam_SID = process.env.Tradiejam_SID;
 const TRADIE_MAIN = process.env.TRADIE_MAIN;
-const client = (0, twilio_1.default)(Tradiejam_SID, Tradiejam_Auth, { accountSid: Tradiejam_SID });
+const client = (0, twilio_1.default)(Tradiejam_SID, Tradiejam_Auth, {
+    accountSid: Tradiejam_SID,
+});
 mail_1.default.setApiKey(TRADIE_MAIN);
 app.get("/", (req, res) => {
     res.send({ data: "some data", message: "some message" });

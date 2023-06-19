@@ -36,11 +36,9 @@ app.use("/trajdim", work_order);
 app.use("/trajdim", services);
 app.use("/trajdim", contract);
 
-
 // sms service
 
-
-import  { Request, Response } from "express";
+import { Request, Response } from "express";
 import sgMail, { MailDataRequired } from "@sendgrid/mail";
 import twilio from "twilio";
 
@@ -48,7 +46,9 @@ const Tradiejam_Auth = process.env.Tradiejam_Auth_Token;
 const Tradiejam_SID = process.env.Tradiejam_SID;
 const TRADIE_MAIN = process.env.TRADIE_MAIN;
 
-const client = twilio(Tradiejam_SID!, Tradiejam_Auth! ,{ accountSid: Tradiejam_SID });
+const client = twilio(Tradiejam_SID!, Tradiejam_Auth!, {
+  accountSid: Tradiejam_SID,
+});
 sgMail.setApiKey(TRADIE_MAIN!);
 
 app.get("/", (req: Request, res: Response) => {
@@ -80,7 +80,5 @@ app.post("/send_sms", async (req: Request, res: Response) => {
     res.status(500).json({ success: false, message: error.message });
   }
 });
-
-
 
 export default app;
