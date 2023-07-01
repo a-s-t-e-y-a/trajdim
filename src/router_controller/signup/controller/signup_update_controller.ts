@@ -39,10 +39,8 @@ export const updateUserInfo = async (
 
     res.status(200).json(updatedUser);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        error: "An error occurred while updating the user information.",
-      });
+    res.status(500).json({
+      error: "An error occurred while updating the user information.",
+    });
   }
 };

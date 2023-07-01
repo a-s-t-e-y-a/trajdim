@@ -16,7 +16,6 @@ export const teamsGet = async (
       },
       include: {
         schedule: true,
-        access: true,
       },
     });
 
