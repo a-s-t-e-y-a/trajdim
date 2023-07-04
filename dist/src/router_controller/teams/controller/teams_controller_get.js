@@ -13,7 +13,6 @@ const teamsGet = async (req, res) => {
             },
             include: {
                 schedule: true,
-                access: true,
             },
         });
         res.status(200).json({

@@ -6,33 +6,33 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.servicesDelete = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
 const servicesDelete = async (req, res) => {
-    const { serviceId } = req.params;
+    const { id } = req.params;
     try {
         // Delete the service and related data
         await helper_1.default.services.delete({
             where: {
-                id: serviceId,
+                id: id,
             },
         });
         // Delete related data from other tables
         await helper_1.default.term.deleteMany({
             where: {
-                ServiceId: serviceId,
+                ServiceId: id,
             },
         });
         await helper_1.default.availableDays.deleteMany({
             where: {
-                ServiceId: serviceId,
+                ServiceId: id,
             },
         });
         await helper_1.default.location.deleteMany({
             where: {
-                ServiceId: serviceId,
+                ServiceId: id,
             },
         });
         await helper_1.default.coustmer_details.deleteMany({
             where: {
-                ServiceId: serviceId,
+                ServiceId: id,
             },
         });
         // await prisma.questionSchema.deleteMany({
@@ -42,12 +42,12 @@ const servicesDelete = async (req, res) => {
         // });
         await helper_1.default.assignTo.deleteMany({
             where: {
-                ServiceId: serviceId,
+                ServiceId: id,
             },
         });
         await helper_1.default.estimate.deleteMany({
             where: {
-                ServiceId: serviceId,
+                ServiceId: id,
             },
         });
         res.status(200).json({
