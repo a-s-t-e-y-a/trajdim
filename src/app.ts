@@ -35,4 +35,50 @@ app.use("/trajdim", team);
 app.use("/trajdim", work_order);
 app.use("/trajdim", services);
 app.use("/trajdim", contract);
+
+// sms service
+
+import { Request, Response } from "express";
+import sgMail, { MailDataRequired } from "@sendgrid/mail";
+import twilio from "twilio";
+
+const Tradiejam_Auth = process.env.Tradiejam_Auth_Token;
+const Tradiejam_SID = process.env.Tradiejam_SID;
+const TRADIE_MAIN = process.env.TRADIE_MAIN;
+
+const client = twilio(Tradiejam_SID!, Tradiejam_Auth!, {
+  accountSid: Tradiejam_SID,
+});
+sgMail.setApiKey(TRADIE_MAIN!);
+
+app.get("/", (req: Request, res: Response) => {
+  res.send({ data: "some data", message: "some message" });
+});
+
+app.post("/multimail", async (req: Request, res: Response) => {
+  const { email, sub, html } = req.body;
+  try {
+    const msg: MailDataRequired = {
+      to: email,
+      from: "Mail@tradiejam.com",
+      subject: sub,
+      html: html,
+    };
+    await sgMail.send(msg);
+    res.status(200).json({ success: true, message: "Email sent" });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+app.post("/send_sms", async (req: Request, res: Response) => {
+  const { from, to, body } = req.body;
+  try {
+    await client.messages.create({ from, to, body });
+    res.status(200).json({ success: true, message: "SMS sent" });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
 export default app;

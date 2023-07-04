@@ -10,12 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   email     String   @unique
   password  String
+  phone_no  String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -26,7 +26,7 @@ model coustmer {
   name    String
   address String
   email   String
-  phone   Int
+  phone   String
   notes   String
 }
 model Team {
@@ -67,6 +67,8 @@ model Services {
     Description  String
     Color        String
     Photo        String?
+    Notes       String?
+    date       String?
 }
 
 model Term {
@@ -155,3 +157,53 @@ model contracts {
     dismissed_no String?
     created_at   String
 }
+
+model Coupon {
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  user               String   @db.ObjectId
+  name               String
+  code               String
+  discount           String
+  specific_services  Boolean?
+  services_selected  Json?
+  expire_selected    Boolean
+  expire_on          String
+  total_no_selecte   Boolean
+  total_no           Int
+  created_at         DateTime @default(now())
+  active             Boolean  @default(true)
+}
+
+model Appointment {
+    id           String  @id @default(auto()) @map("_id") @db.ObjectId
+    user         String  @db.ObjectId
+    time         String
+}
+
+model Business {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  user        String  @db.ObjectId
+  name        String
+  website     String
+  email       String
+  phone_no    String
+  sender_id   String
+  address     String
+  bank_name   String
+  bank_bsb    String
+  account     String
+  gst_option  String
+}
+
+model otherDetails {
+     id          String  @id @default(auto()) @map("_id") @db.ObjectId
+     user        String  @db.ObjectId
+     country     String
+     currency String
+     timeZone String
+     salaryRelease String
+     trackStaff String
+}
+
+
+
