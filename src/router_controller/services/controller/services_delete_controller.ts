@@ -10,35 +10,35 @@ export const servicesDelete = async (
   req: AuthenticatedRequest,
   res: Response
 ): Promise<any> => {
-  const { serviceId } = req.params;
+  const { id } = req.params;
 
   try {
     // Delete the service and related data
     await prisma.services.delete({
       where: {
-        id: serviceId,
+        id: id,
       },
     });
 
     // Delete related data from other tables
     await prisma.term.deleteMany({
       where: {
-        ServiceId: serviceId,
+        ServiceId: id,
       },
     });
     await prisma.availableDays.deleteMany({
       where: {
-        ServiceId: serviceId,
+        ServiceId: id,
       },
     });
     await prisma.location.deleteMany({
       where: {
-        ServiceId: serviceId,
+        ServiceId: id,
       },
     });
     await prisma.coustmer_details.deleteMany({
       where: {
-        ServiceId: serviceId,
+        ServiceId: id,
       },
     });
     // await prisma.questionSchema.deleteMany({
@@ -48,12 +48,12 @@ export const servicesDelete = async (
     // });
     await prisma.assignTo.deleteMany({
       where: {
-        ServiceId: serviceId,
+        ServiceId: id,
       },
     });
     await prisma.estimate.deleteMany({
       where: {
-        ServiceId: serviceId,
+        ServiceId: id,
       },
     });
 
