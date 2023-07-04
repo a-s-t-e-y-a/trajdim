@@ -8,7 +8,11 @@ const helper_1 = __importDefault(require("../../../config/helper"));
 const bluebird_1 = require("bluebird");
 const servicesGetAll = async (req, res) => {
     try {
-        const services = await helper_1.default.services.findMany();
+        const services = await helper_1.default.services.findMany({
+            where: {
+                user: req.user.id
+            }
+        });
         const termPromises = services.map((service) => helper_1.default.term.findMany({
             where: {
                 ServiceId: service.id,

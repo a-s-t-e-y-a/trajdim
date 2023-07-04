@@ -11,7 +11,11 @@ export const servicesGetAll = async (
   res: Response
 ): Promise<any> => {
   try {
-    const services = await prisma.services.findMany();
+    const services = await prisma.services.findMany({
+      where:{
+        user:req.user.id
+      }
+    });
 
     const termPromises = services.map((service) =>
       prisma.term.findMany({
