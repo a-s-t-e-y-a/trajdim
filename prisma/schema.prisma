@@ -204,6 +204,3 @@ model otherDetails {
      salaryRelease String
      trackStaff String
 }
-
-
-

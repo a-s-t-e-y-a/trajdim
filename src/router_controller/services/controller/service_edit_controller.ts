@@ -11,12 +11,12 @@ export const editServices = async (
   res: Response
 ) => {
   const { id } = req.params;
-  const { user, ServicesName, Description, Color, Photo } = req.body;
+  const { user, ServicesName, Description, Color, Photo, Notes } = req.body;
 
   try {
     const updatedService = await prisma.services.update({
       where: { id },
-      data: { user, ServicesName, Description, Color, Photo },
+      data: { user, ServicesName, Description, Color, Photo, Notes },
     });
 
     res.status(200).json(updatedService);
