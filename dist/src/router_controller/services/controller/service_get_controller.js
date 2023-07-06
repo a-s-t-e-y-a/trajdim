@@ -10,8 +10,8 @@ const servicesGetAll = async (req, res) => {
     try {
         const services = await helper_1.default.services.findMany({
             where: {
-                user: req.user.id
-            }
+                user: req.user.id,
+            },
         });
         const termPromises = services.map((service) => helper_1.default.term.findMany({
             where: {

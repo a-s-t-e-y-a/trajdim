@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.servicesGetUnique = void 0;
+exports.coustmerGet = exports.servicesGetUnique = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
 const bluebird_1 = require("bluebird");
 const servicesGetUnique = async (req, res) => {
@@ -79,4 +79,22 @@ const servicesGetUnique = async (req, res) => {
     }
 };
 exports.servicesGetUnique = servicesGetUnique;
+const coustmerGet = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const coustmerDetailsPromises = helper_1.default.coustmer_details.findMany({
+            where: {
+                ServiceId: id,
+            },
+        });
+        res.status(200).json({
+            message: "Coustmer data send",
+            data: coustmerDetailsPromises,
+        });
+    }
+    catch (error) {
+        res.status(500).send(error.message);
+    }
+};
+exports.coustmerGet = coustmerGet;
 //# sourceMappingURL=services_get_unique_controller.js.map

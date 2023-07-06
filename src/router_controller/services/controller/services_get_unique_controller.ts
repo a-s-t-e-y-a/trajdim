@@ -101,3 +101,22 @@ export const servicesGetUnique = async (
     res.status(500).send(error.message);
   }
 };
+export const coustmerGet = async (
+  req: AuthenticatedRequest,
+  res: Response
+): Promise<any> => {
+  const id = req.params.id;
+  try {
+    const coustmerDetailsPromises = prisma.coustmer_details.findMany({
+      where: {
+        ServiceId: id,
+      },
+    });
+    res.status(200).json({
+      message: "Coustmer data send",
+      data: coustmerDetailsPromises,
+    });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};

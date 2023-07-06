@@ -22,5 +22,7 @@ services.patch("/location/:id", auth_1.default, service_edit_controller_1.editLo
 services.patch("/customer_details/:id", auth_1.default, service_edit_controller_1.editCustomerDetails);
 services.patch("/asssign_to/:id", auth_1.default, service_edit_controller_1.editAssignTo);
 services.patch("/estimate/:id", auth_1.default, service_edit_controller_1.editEstimate);
+services.get("/services/:id", auth_1.default, services_get_unique_controller_1.servicesGetUnique);
+services.get("/services/question/:id", auth_1.default, services_get_unique_controller_1.coustmerGet);
 exports.default = services;
 //# sourceMappingURL=service_route.js.map
