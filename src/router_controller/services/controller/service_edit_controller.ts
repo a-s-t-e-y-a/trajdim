@@ -93,15 +93,14 @@ export const editCustomerDetails = async (req: Request, res: Response) => {
   try {
     const updatedCustomerDetails = await Promise.all(
       questionDetails.map(async (customerDetailsItem) => {
-        if(customerDetailsItem.id){
+        if (customerDetailsItem.id) {
           const existingCustomer = await prisma.coustmer_details.findFirst({
             where: {
               id: customerDetailsItem.id,
             },
           });
-  
+
           if (existingCustomer) {
-          
             const updatedCustomer = await prisma.coustmer_details.update({
               where: {
                 id: customerDetailsItem.id,
@@ -111,13 +110,12 @@ export const editCustomerDetails = async (req: Request, res: Response) => {
                 questionDetails: customerDetailsItem.questionDetails,
               },
             });
-  
+
             return updatedCustomer;
           }
-        }else {
-        
+        } else {
           const newCustomer = await prisma.coustmer_details.create({
-            data: { 
+            data: {
               ServiceId: customerDetailsItem.ServiceId,
               questionDetails: customerDetailsItem.questionDetails,
             },

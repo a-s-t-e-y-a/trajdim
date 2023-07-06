@@ -106,14 +106,14 @@ export const coustmerGet = async (
   res: Response
 ): Promise<any> => {
   const id = req.params.id;
-  console.log(id)
+  console.log(id);
   try {
-    const coustmer =await prisma.coustmer_details.findMany({
+    const coustmer = await prisma.coustmer_details.findMany({
       where: {
         ServiceId: id,
       },
     });
-    console.log(coustmer)
+    console.log(coustmer);
     res.status(200).json({
       message: "Coustmer data send",
       data: coustmer,
