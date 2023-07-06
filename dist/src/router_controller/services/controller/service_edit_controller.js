@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.editEstimate = exports.editAssignTo = exports.editCustomerDetails = exports.editLocation = exports.editAvailableDays = exports.editTerm = exports.editServices = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
+const bluebird_1 = require("bluebird");
 const editServices = async (req, res) => {
     const { id } = req.params;
     const { user, ServicesName, Description, Color, Photo, Notes } = req.body;
@@ -75,15 +76,42 @@ const editLocation = async (req, res) => {
 exports.editLocation = editLocation;
 const editCustomerDetails = async (req, res) => {
     const { id } = req.params;
-    const { ServiceId, questionDetails } = req.body;
+    const { questionDetails } = req.body;
     try {
-        const updatedCustomerDetails = await helper_1.default.coustmer_details.update({
-            where: { id },
-            data: { ServiceId, questionDetails },
-        });
+        const updatedCustomerDetails = await bluebird_1.Promise.all(questionDetails.map(async (customerDetailsItem) => {
+            if (customerDetailsItem.id) {
+                const existingCustomer = await helper_1.default.coustmer_details.findFirst({
+                    where: {
+                        id: customerDetailsItem.id,
+                    },
+                });
+                if (existingCustomer) {
+                    const updatedCustomer = await helper_1.default.coustmer_details.update({
+                        where: {
+                            id: customerDetailsItem.id,
+                        },
+                        data: {
+                            ServiceId: customerDetailsItem.ServiceId,
+                            questionDetails: customerDetailsItem.questionDetails,
+                        },
+                    });
+                    return updatedCustomer;
+                }
+            }
+            else {
+                const newCustomer = await helper_1.default.coustmer_details.create({
+                    data: {
+                        ServiceId: customerDetailsItem.ServiceId,
+                        questionDetails: customerDetailsItem.questionDetails,
+                    },
+                });
+                return newCustomer;
+            }
+        }));
         res.status(200).json(updatedCustomerDetails);
     }
     catch (error) {
+        console.log(error);
         res.status(500).json({ error: "Unable to update the customer details." });
     }
 };

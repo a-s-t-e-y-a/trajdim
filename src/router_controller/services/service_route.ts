@@ -2,7 +2,10 @@ import express from "express";
 import authenticateToken from "../../middleware/auth";
 import { servicesPost } from "./controller/service_controller";
 import { servicesGetAll } from "./controller/service_get_controller";
-import { coustmerGet, servicesGetUnique } from "./controller/services_get_unique_controller";
+import {
+  coustmerGet,
+  servicesGetUnique,
+} from "./controller/services_get_unique_controller";
 import { servicesDelete } from "./controller/services_delete_controller";
 import {
   editAssignTo,
@@ -27,7 +30,6 @@ services.patch("/customer_details/:id", authenticateToken, editCustomerDetails);
 services.patch("/asssign_to/:id", authenticateToken, editAssignTo);
 services.patch("/estimate/:id", authenticateToken, editEstimate);
 services.get("/services/:id", authenticateToken, servicesGetUnique);
-services.get("/services/question/:id", authenticateToken, coustmerGet);
-
+services.get("/new/:id", authenticateToken, coustmerGet);
 
 export default services;

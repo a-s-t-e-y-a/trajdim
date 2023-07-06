@@ -88,19 +88,53 @@ export const editLocation = async (req: Request, res: Response) => {
 };
 export const editCustomerDetails = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { ServiceId, questionDetails } = req.body;
+  const { questionDetails } = req.body;
 
   try {
-    const updatedCustomerDetails = await prisma.coustmer_details.update({
-      where: { id },
-      data: { ServiceId, questionDetails },
-    });
+    const updatedCustomerDetails = await Promise.all(
+      questionDetails.map(async (customerDetailsItem) => {
+        if(customerDetailsItem.id){
+          const existingCustomer = await prisma.coustmer_details.findFirst({
+            where: {
+              id: customerDetailsItem.id,
+            },
+          });
+  
+          if (existingCustomer) {
+          
+            const updatedCustomer = await prisma.coustmer_details.update({
+              where: {
+                id: customerDetailsItem.id,
+              },
+              data: {
+                ServiceId: customerDetailsItem.ServiceId,
+                questionDetails: customerDetailsItem.questionDetails,
+              },
+            });
+  
+            return updatedCustomer;
+          }
+        }else {
+        
+          const newCustomer = await prisma.coustmer_details.create({
+            data: { 
+              ServiceId: customerDetailsItem.ServiceId,
+              questionDetails: customerDetailsItem.questionDetails,
+            },
+          });
+
+          return newCustomer;
+        }
+      })
+    );
 
     res.status(200).json(updatedCustomerDetails);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: "Unable to update the customer details." });
   }
 };
+
 export const editAssignTo = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { ServiceId, Assign } = req.body;

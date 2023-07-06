@@ -81,15 +81,17 @@ const servicesGetUnique = async (req, res) => {
 exports.servicesGetUnique = servicesGetUnique;
 const coustmerGet = async (req, res) => {
     const id = req.params.id;
+    console.log(id);
     try {
-        const coustmerDetailsPromises = helper_1.default.coustmer_details.findMany({
+        const coustmer = await helper_1.default.coustmer_details.findMany({
             where: {
                 ServiceId: id,
             },
         });
+        console.log(coustmer);
         res.status(200).json({
             message: "Coustmer data send",
-            data: coustmerDetailsPromises,
+            data: coustmer,
         });
     }
     catch (error) {
