@@ -18,7 +18,12 @@ import {
 } from "./controller/service_edit_controller";
 import { uploadImageMiddleware } from "../../middleware/upload";
 const services = express.Router();
-services.post("/services", authenticateToken,uploadImageMiddleware, servicesPost);
+services.post(
+  "/services",
+  authenticateToken,
+  uploadImageMiddleware,
+  servicesPost
+);
 services.get("/services", authenticateToken, servicesGetAll);
 services.get("/services/:id", authenticateToken, servicesGetUnique);
 services.delete("/services/:id", authenticateToken, servicesDelete);

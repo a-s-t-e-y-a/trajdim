@@ -22,13 +22,13 @@ export const servicesPost = async (
     ...rest
   } = parseJsonData(req.body.data);
 
-const image = req.file
+  const image = req.file;
   try {
     const services = await prisma.services.create({
       data: {
         user: req.user.id,
         ...rest,
-        Photo:image.filename
+        Photo: image.filename,
       },
     });
 
