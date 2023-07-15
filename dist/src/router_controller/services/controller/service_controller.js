@@ -17,11 +17,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.servicesPost = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
 const bluebird_1 = require("bluebird");
+const parser_1 = require("../../../utlis/parser");
 const servicesPost = async (req, res) => {
-    const _a = req.body, { term, AvailableDays, Location, Coustmer_details, QuestionSchema, assignTo, Estimate } = _a, rest = __rest(_a, ["term", "AvailableDays", "Location", "Coustmer_details", "QuestionSchema", "assignTo", "Estimate"]);
+    const _a = (0, parser_1.parseJsonData)(req.body.data), { term, AvailableDays, Location, Coustmer_details, QuestionSchema, assignTo, Estimate } = _a, rest = __rest(_a, ["term", "AvailableDays", "Location", "Coustmer_details", "QuestionSchema", "assignTo", "Estimate"]);
+    const image = req.file;
     try {
         const services = await helper_1.default.services.create({
-            data: Object.assign({ user: req.user.id }, rest),
+            data: Object.assign(Object.assign({ user: req.user.id }, rest), { Photo: image.filename }),
         });
         const Term = await bluebird_1.Promise.map(term, async (termItem) => {
             return helper_1.default.term.create({

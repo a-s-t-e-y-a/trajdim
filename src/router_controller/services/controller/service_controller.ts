@@ -1,6 +1,7 @@
 import prisma from "../../../config/helper";
 import { Request, Response } from "express";
 import { Promise } from "bluebird";
+import { parseJsonData } from "../../../utlis/parser";
 
 interface AuthenticatedRequest extends Request {
   user?: any;
@@ -19,13 +20,15 @@ export const servicesPost = async (
     assignTo,
     Estimate,
     ...rest
-  } = req.body;
+  } = parseJsonData(req.body.data);
 
+const image = req.file
   try {
     const services = await prisma.services.create({
       data: {
         user: req.user.id,
         ...rest,
+        Photo:image.filename
       },
     });
 
