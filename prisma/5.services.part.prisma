@@ -5,6 +5,7 @@ model Services {
     Description  String
     Color        String
     Photo        String?
+    workOrders Work_order[]
 }
 
 model Term {

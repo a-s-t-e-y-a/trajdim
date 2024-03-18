@@ -1,6 +1,6 @@
 model Work_order {
-  id             String  @id @default(auto()) @map("_id") @db.ObjectId
-  user           String  @db.ObjectId
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  user           String   @db.ObjectId
   date           String
   from           String
   to             String
@@ -8,7 +8,8 @@ model Work_order {
   customerId     String   @db.ObjectId
   note           String?
   through        String
-  service_name   String
+  service        Services @relation(fields: [serviceId], references: [id])
+  serviceId      String   @db.ObjectId
   order_location String
   order_duration String
   order_occuring String

@@ -8,12 +8,13 @@ export const work_orderPOST = async (
   res: Response
 ): Promise<any> => {
   try {
-    const { items,customer, ...rest } = req.body;
+    const { items,customer,service, ...rest } = req.body;
     const data1 = await prisma.work_order.create({
       data: {
         user: req.user.id,
         date: new Date(),
         customer: { connect: { id: customer } },
+        service: { connect :{id:service}},
         items: {
           create: items || [],
         },

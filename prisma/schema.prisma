@@ -10,7 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   name      String
@@ -20,107 +19,111 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
 model Customer {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  user      String   @db.ObjectId
-  photo     String
-  name      String
-  address   String
-  email     String
-  phone     String
-  notes     String
+  id         String       @id @default(auto()) @map("_id") @db.ObjectId
+  user       String       @db.ObjectId
+  photo      String
+  name       String
+  address    String
+  email      String
+  phone      String
+  notes      String
   workOrders Work_order[]
 }
 
 model Team {
-   id        String     @id @default(auto()) @map("_id") @db.ObjectId
-   user      String     @db.ObjectId
-   photo     String
-   name      String
-   job_title String
-   email     String
-   phone     Int
-   color     String
-   schedule  Schedule[]
-   access    Access[]
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  user      String     @db.ObjectId
+  photo     String
+  name      String
+  job_title String
+  email     String
+  phone     Int
+  color     String
+  schedule  Schedule[]
+  access    Access[]
 }
 
 model Schedule {
-   id      String @id @default(auto()) @map("_id") @db.ObjectId
-   team    Team   @relation(fields: [team_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-   team_id String @db.ObjectId
-   day     String
-   from    String
-   to      String
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  team    Team   @relation(fields: [team_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  team_id String @db.ObjectId
+  day     String
+  from    String
+  to      String
 }
 
 model Access {
-   id      String  @id @default(auto()) @map("_id") @db.ObjectId
-   team    Team    @relation(fields: [team_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-   team_id String  @db.ObjectId
-   api     String
-   view    Boolean @default(false)
-   edit    Boolean @default(false)
-   add     Boolean @default(false)
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  team    Team    @relation(fields: [team_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  team_id String  @db.ObjectId
+  api     String
+  view    Boolean @default(false)
+  edit    Boolean @default(false)
+  add     Boolean @default(false)
 }
+
 model Services {
-    id           String  @id @default(auto()) @map("_id") @db.ObjectId
-    user         String  @db.ObjectId
-    ServicesName String
-    Description  String
-    Color        String
-    Photo        String?
+  id           String       @id @default(auto()) @map("_id") @db.ObjectId
+  user         String       @db.ObjectId
+  ServicesName String
+  Description  String
+  Color        String
+  Photo        String?
+  workOrders   Work_order[]
 }
 
 model Term {
-    id         String  @id @default(auto()) @map("_id") @db.ObjectId
-    ContractId String  @db.ObjectId
-    ServiceId  String  @db.ObjectId
-    Radio      Boolean
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  ContractId String  @db.ObjectId
+  ServiceId  String  @db.ObjectId
+  Radio      Boolean
 }
 
 model AvailableDays {
-    id            String  @id @default(auto()) @map("_id") @db.ObjectId
-    ServiceId     String  @db.ObjectId
-    details       Json?
-    rangeRadio    Boolean
-    rangeTime     String?
-    hoursRange    String
-    Recurring     Boolean
-    RecurringTime String?
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  ServiceId     String  @db.ObjectId
+  details       Json?
+  rangeRadio    Boolean
+  rangeTime     String?
+  hoursRange    String
+  Recurring     Boolean
+  RecurringTime String?
 }
 
 model Location {
-    id                String @id @default(auto()) @map("_id") @db.ObjectId
-    ServiceId         String @db.ObjectId
-    arrayOfObjCountry Json?
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  ServiceId         String @db.ObjectId
+  arrayOfObjCountry Json?
 }
 
 model Coustmer_details {
-    id            String  @id @default(auto()) @map("_id") @db.ObjectId
-    ServiceId     String  @db.ObjectId
-    questionDetails   Json?
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
+  ServiceId       String @db.ObjectId
+  questionDetails Json?
 }
 
 model assignTo {
-    id        String @id @default(auto()) @map("_id") @db.ObjectId
-    ServiceId String @db.ObjectId
-    Assign    Json?
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  ServiceId String @db.ObjectId
+  Assign    Json?
 }
 
 model Estimate {
-    id                   String @id @default(auto()) @map("_id") @db.ObjectId
-    ServiceId            String @db.ObjectId
-    Customer_will_select String?
-    Services             Json?
-    Discount             String
-    Tax                  String
-    Recurring            String?
-    Discount_per_time    String
+  id                   String  @id @default(auto()) @map("_id") @db.ObjectId
+  ServiceId            String  @db.ObjectId
+  Customer_will_select String?
+  Services             Json?
+  Discount             String
+  Tax                  String
+  Recurring            String?
+  Discount_per_time    String
 }
+
 model Work_order {
-  id             String  @id @default(auto()) @map("_id") @db.ObjectId
-  user           String  @db.ObjectId
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  user           String   @db.ObjectId
   date           String
   from           String
   to             String
@@ -128,7 +131,8 @@ model Work_order {
   customerId     String   @db.ObjectId
   note           String?
   through        String
-  service_name   String
+  service        Services @relation(fields: [serviceId], references: [id])
+  serviceId      String   @db.ObjectId
   order_location String
   order_duration String
   order_occuring String
@@ -149,59 +153,59 @@ model Item {
   Work   Work_order @relation(fields: [WorkId], references: [id], onDelete: Cascade)
   WorkId String     @db.ObjectId
 }
+
 model contracts {
-    id           String  @id @default(auto()) @map("_id") @db.ObjectId
-    user         String  @db.ObjectId
-    name         String
-    created_by   String
-    file_name    String
-    signed_no    String?
-    dismissed_no String?
-    created_at   String
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  user         String  @db.ObjectId
+  name         String
+  created_by   String
+  file_name    String
+  signed_no    String?
+  dismissed_no String?
+  created_at   String
 }
+
 model Coupon {
-    id           String  @id @default(auto()) @map("_id") @db.ObjectId
-    user         String  @db.ObjectId
-    name String
-    code String
-    discount String
-    specific_services Boolean?
-    services_selected Json?
-    expire_selected Boolean
-    expire_on String
-    total_no_selecte Boolean
-    total_no Int
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  user              String   @db.ObjectId
+  name              String
+  code              String
+  discount          String
+  specific_services Boolean?
+  services_selected Json?
+  expire_selected   Boolean
+  expire_on         String
+  total_no_selecte  Boolean
+  total_no          Int
 }
 
 model Appointment {
-    id           String  @id @default(auto()) @map("_id") @db.ObjectId
-    user         String  @db.ObjectId
-    time         String
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  user String @db.ObjectId
+  time String
 }
 
 model Business {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  user        String  @db.ObjectId
-  name        String
-  website     String
-  email       String
-  phone_no    String
-  sender_id   String
-  address     String
-  bank_name   String
-  bank_bsb    String
-  account     String
-  gst_option  String
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  user       String @db.ObjectId
+  name       String
+  website    String
+  email      String
+  phone_no   String
+  sender_id  String
+  address    String
+  bank_name  String
+  bank_bsb   String
+  account    String
+  gst_option String
 }
 
 model otherDetails {
-     id          String  @id @default(auto()) @map("_id") @db.ObjectId
-     user        String  @db.ObjectId
-     country     String
-     currency String
-     timeZone String
-     salaryRelease String
-     trackStaff String
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  user          String @db.ObjectId
+  country       String
+  currency      String
+  timeZone      String
+  salaryRelease String
+  trackStaff    String
 }
-
-
