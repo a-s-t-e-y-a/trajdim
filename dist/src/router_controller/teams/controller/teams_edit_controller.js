@@ -24,10 +24,10 @@ const teamsEdit = async (req, res) => {
                 id: req.params.id,
             },
             data: Object.assign({ schedule: {
-                    deleteMany: {},
+                    deleteMany: {}, // Delete all existing schedule records
                     create: schedule || [], // Create new schedule records if provided
                 }, access: {
-                    deleteMany: {},
+                    deleteMany: {}, // Delete all existing access records
                     create: access || [], // Create new access records if provided
                 } }, rest),
             include: {

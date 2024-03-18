@@ -5,5 +5,5 @@ declare const prisma: PrismaClient<{
             url: string;
         };
     };
-}, never, false>;
+}, never, false, import("@prisma/client/runtime").DefaultArgs>;
 export default prisma;
