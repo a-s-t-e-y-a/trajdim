@@ -25,7 +25,7 @@ export const login = async (req: Request, res: Response): Promise<any> => {
               name: user.name,
               id: user.id,
             },
-            process.env.SECRET_KEY
+            "H7BxIFkroaje9xVMpul3dw9ItBR79MBC"
           );
 
           res.status(200).json({

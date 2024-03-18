@@ -12,6 +12,7 @@ export const work_orderPOST = async (
     const data1 = await prisma.work_order.create({
       data: {
         user: req.user.id,
+        date:new Date(),
         items: {
           create: items || [],
         },

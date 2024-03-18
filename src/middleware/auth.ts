@@ -23,7 +23,7 @@ const authenticateToken = (
     // Verify the JWT token
     const decoded = jwt.verify(
       authHeader,
-      process.env.SECRET_KEY
+      "H7BxIFkroaje9xVMpul3dw9ItBR79MBC"
     ) as JwtPayload;
 
     // Attach the decoded token to the request object
