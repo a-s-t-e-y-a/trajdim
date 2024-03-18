@@ -10,5 +10,5 @@ coustmer.post("/coustmer", authenticateToken, coustmerPost);
 coustmer.patch("/coustmer/:id", authenticateToken, coustmerEdit);
 coustmer.delete("/coustmer/:id", authenticateToken, coustmerDelete);
 coustmer.get("/coustmer/:id", authenticateToken, coustmerGet);
-coustmer.get("/all/coustmer", authenticateToken, coustmerAllGet);
+coustmer.get("/coustmer", authenticateToken, coustmerAllGet);
 export default coustmer;

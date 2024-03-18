@@ -8,7 +8,7 @@ export const coustmerEdit = async (
   res: Response
 ): Promise<any> => {
   try {
-    const data1 = await prisma.coustmer.update({
+    const data1 = await prisma.customer.update({
       where: {
         id: req.params.id,
       },

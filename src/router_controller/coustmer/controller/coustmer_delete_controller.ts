@@ -8,7 +8,7 @@ export const coustmerDelete = async (
   res: Response
 ): Promise<any> => {
   try {
-    const data1 = await prisma.coustmer.delete({
+    const data1 = await prisma.customer.delete({
       where: {
         id: req.params.id,
       },

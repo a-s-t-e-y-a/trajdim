@@ -8,7 +8,7 @@ export const coustmerAllGet = async (
   res: Response
 ): Promise<any> => {
   try {
-    const data1 = await prisma.coustmer.findMany({});
+    const data1 = await prisma.customer.findMany({});
     res.status(200).json({
       message: "all coustmer get successfuly",
       data: data1,

@@ -4,7 +4,8 @@ model Work_order {
   date           String
   from           String
   to             String
-  coustmer_name  String
+  customer       Customer @relation(fields: [customerId], references: [id])
+  customerId     String   @db.ObjectId
   note           String?
   through        String
   service_name   String

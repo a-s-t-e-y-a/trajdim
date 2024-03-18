@@ -1,10 +1,12 @@
-model coustmer {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
-  user    String @db.ObjectId
-  photo   String
-  name    String
-  address String
-  email   String
-  phone   Int
-  notes   String
+model Customer {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  user      String   @db.ObjectId
+  photo     String
+  name      String
+  address   String
+  email     String
+  phone     String
+  notes     String
+  workOrders Work_order[]
 }
+

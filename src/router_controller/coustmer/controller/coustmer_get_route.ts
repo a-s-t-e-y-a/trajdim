@@ -8,7 +8,7 @@ export const coustmerGet = async (
   res: Response
 ): Promise<any> => {
   try {
-    const data1 = await prisma.coustmer.findUnique({
+    const data1 = await prisma.customer.findUnique({
       where: {
         id: req.params.id,
       },

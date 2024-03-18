@@ -8,7 +8,7 @@ export const coustmerPost = async (
   res: Response
 ): Promise<any> => {
   try {
-    const data1 = await prisma.coustmer.create({
+    const data1 = await prisma.customer.create({
       data: {
         ...req.body,
         user: req.user.id,
