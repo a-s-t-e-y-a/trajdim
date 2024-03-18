@@ -25,6 +25,6 @@ model Item {
   name   String
   price  String
   per    String
-  Work   Work_order @relation(fields: [WorkId], references: [id])
+  Work   Work_order @relation(fields: [WorkId], references: [id], onDelete: Cascade)
   WorkId String     @db.ObjectId
 }
