@@ -10,7 +10,7 @@ export const work_orderPUT = async (
   res: Response
 ): Promise<any> => {
   try {
-    const { id, items, ...rest } = req.body;
+    const { id, items, customer, service, ...rest } = req.body;
     const data1 = await prisma.work_order.update({
       where: { id: req.params.id }, // Assuming the work order ID is provided in the request body
       data: {
@@ -18,6 +18,8 @@ export const work_orderPUT = async (
         items: {
           create: items || [],
         },
+        customer: { connect: { id: customer } },
+        service: { connect: { id: service } },
         ...rest,
       },
     });
