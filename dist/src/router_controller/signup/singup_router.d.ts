@@ -1,2 +1,3 @@
-declare const signup: import("express-serve-static-core").Router;
+import { Router } from "express";
+declare const signup: Router;
 export default signup;

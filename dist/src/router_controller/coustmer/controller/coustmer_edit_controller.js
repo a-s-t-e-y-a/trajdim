@@ -7,7 +7,7 @@ exports.coustmerEdit = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
 const coustmerEdit = async (req, res) => {
     try {
-        const data1 = await helper_1.default.coustmer.update({
+        const data1 = await helper_1.default.customer.update({
             where: {
                 id: req.params.id,
             },

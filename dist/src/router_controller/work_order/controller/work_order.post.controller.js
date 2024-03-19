@@ -18,9 +18,9 @@ exports.work_orderPOST = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
 const work_orderPOST = async (req, res) => {
     try {
-        const _a = req.body, { items } = _a, rest = __rest(_a, ["items"]);
+        const _a = req.body, { items, customer, service } = _a, rest = __rest(_a, ["items", "customer", "service"]);
         const data1 = await helper_1.default.work_order.create({
-            data: Object.assign({ user: req.user.id, items: {
+            data: Object.assign({ user: req.user.id, date: new Date(), customer: { connect: { id: customer } }, service: { connect: { id: service } }, items: {
                     create: items || [],
                 } }, rest),
         });

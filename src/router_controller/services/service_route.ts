@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Router } from "express";
 import authenticateToken from "../../middleware/auth";
 import { servicesPost } from "./controller/service_controller";
 import { servicesGetAll } from "./controller/service_get_controller";
@@ -17,7 +17,7 @@ import {
   editTerm,
 } from "./controller/service_edit_controller";
 import { uploadImageMiddleware } from "../../middleware/upload";
-const services = express.Router();
+const services:Router = express.Router();
 services.post(
   "/services",
   authenticateToken,

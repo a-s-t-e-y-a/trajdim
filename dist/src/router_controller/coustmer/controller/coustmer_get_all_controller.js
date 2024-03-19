@@ -7,7 +7,7 @@ exports.coustmerAllGet = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
 const coustmerAllGet = async (req, res) => {
     try {
-        const data1 = await helper_1.default.coustmer.findMany({});
+        const data1 = await helper_1.default.customer.findMany({});
         res.status(200).json({
             message: "all coustmer get successfuly",
             data: data1,

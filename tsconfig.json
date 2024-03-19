@@ -18,7 +18,8 @@
     "noEmit": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "noImplicitAny": false
   },
   "include": ["src/**/*.ts", "server.ts"],
   "exclude": ["node_modules"]

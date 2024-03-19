@@ -25,7 +25,7 @@ const login = async (req, res) => {
                         email: user.email,
                         name: user.name,
                         id: user.id,
-                    }, process.env.SECRET_KEY);
+                    }, "H7BxIFkroaje9xVMpul3dw9ItBR79MBC");
                     res.status(200).json({
                         message: "User logged in successfully",
                         data: token,

@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Router } from "express";
 import authenticateToken from "../../middleware/auth";
 import { work_orderPOST } from "./controller/work_order.post.controller";
 import { work_orderPUT } from "./controller/work_order.edit.controller";
@@ -6,7 +6,7 @@ import { work_orderDELETE } from "./controller/work_order.delete.controller";
 import { work_orderGET } from "./controller/work_order.get.controller";
 import { work_orderGETAll } from "./controller/work_order.get.all.controller";
 
-const work_order = express.Router();
+const work_order: Router = express.Router();
 
 work_order.post("/work_order", authenticateToken, work_orderPOST);
 work_order.put("/work_order/:id", authenticateToken, work_orderPUT);

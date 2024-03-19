@@ -1,2 +1,3 @@
-declare const team: import("express-serve-static-core").Router;
+import { Router } from "express";
+declare const team: Router;
 export default team;

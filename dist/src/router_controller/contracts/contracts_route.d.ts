@@ -1,2 +1,3 @@
-declare const contract: import("express-serve-static-core").Router;
+import { Router } from "express";
+declare const contract: Router;
 export default contract;

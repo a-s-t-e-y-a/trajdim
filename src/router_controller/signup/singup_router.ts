@@ -5,7 +5,7 @@ import {
   updatePassword,
   updateUserInfo,
 } from "./controller/signup_update_controller";
-const signup = Router();
+const signup:Router = Router();
 
 signup.post("/signup", signupPost);
 signup.patch("/users/:userId/password", authenticateToken, updatePassword);

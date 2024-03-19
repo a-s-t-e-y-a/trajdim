@@ -8,11 +8,11 @@ const helper_1 = __importDefault(require("../../../config/helper"));
 const bluebird_1 = require("bluebird");
 const editServices = async (req, res) => {
     const { id } = req.params;
-    const { user, ServicesName, Description, Color, Photo, Notes } = req.body;
+    const { user, ServicesName, Description, Color, Photo } = req.body;
     try {
         const updatedService = await helper_1.default.services.update({
             where: { id },
-            data: { user, ServicesName, Description, Color, Photo, Notes },
+            data: { user, ServicesName, Description, Color, Photo },
         });
         res.status(200).json(updatedService);
     }

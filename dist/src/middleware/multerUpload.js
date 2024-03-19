@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const multer_1 = __importDefault(require("multer"));
 const multer_s3_1 = __importDefault(require("multer-s3"));
 const client_s3_1 = require("@aws-sdk/client-s3");
-// import { Authenticate } from '../interfaces/reqInterface'
 const s3Config = new client_s3_1.S3Client({
     region: process.env.REGION,
     credentials: {
@@ -18,7 +17,6 @@ const upload = (0, multer_1.default)({
     storage: (0, multer_s3_1.default)({
         s3: s3Config,
         bucket: process.env.BUCKET_NAME,
-        region: process.env.REGION,
         acl: "public-read",
         contentType: (req, file, cb) => {
             cb(null, file.mimetype);

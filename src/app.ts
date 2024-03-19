@@ -1,8 +1,8 @@
-import express from "express";
+import express, { Express } from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 
-const app = express();
+const app:Express = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }));
 

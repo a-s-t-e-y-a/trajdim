@@ -1,4 +1,4 @@
-import express from "express";
+import express,{Router} from "express";
 import authenticateToken from "../../middleware/auth";
 import { teamsPost } from "./controller/teams_controller";
 import { teamsEdit } from "./controller/teams_edit_controller";
@@ -6,7 +6,7 @@ import { teamsDelete } from "./controller/teams_delete_controller";
 import { teamsGet } from "./controller/teams_controller_get";
 import { teamsGetSingle } from "./controller/teams_controller_single";
 import { teamsGetSchdule } from "./controller/schedule_get_controller";
-const team = express.Router();
+const team:Router = express.Router();
 team.post("/team", authenticateToken, teamsPost);
 team.patch("/team/:id", authenticateToken, teamsEdit);
 team.delete("/team/:id", authenticateToken, teamsDelete);

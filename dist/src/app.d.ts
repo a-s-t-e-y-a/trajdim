@@ -1,2 +1,3 @@
-declare const app: import("express-serve-static-core").Express;
+import { Express } from "express";
+declare const app: Express;
 export default app;

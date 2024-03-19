@@ -7,7 +7,7 @@ exports.coustmerGet = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
 const coustmerGet = async (req, res) => {
     try {
-        const data1 = await helper_1.default.coustmer.findUnique({
+        const data1 = await helper_1.default.customer.findUnique({
             where: {
                 id: req.params.id,
             },

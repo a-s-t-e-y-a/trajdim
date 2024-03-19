@@ -7,7 +7,7 @@ exports.coustmerPost = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
 const coustmerPost = async (req, res) => {
     try {
-        const data1 = await helper_1.default.coustmer.create({
+        const data1 = await helper_1.default.customer.create({
             data: Object.assign(Object.assign({}, req.body), { user: req.user.id }),
         });
         res.status(200).json({

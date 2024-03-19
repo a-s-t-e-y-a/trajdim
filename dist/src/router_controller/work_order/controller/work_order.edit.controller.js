@@ -18,12 +18,12 @@ exports.work_orderPUT = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
 const work_orderPUT = async (req, res) => {
     try {
-        const _a = req.body, { id, items } = _a, rest = __rest(_a, ["id", "items"]);
+        const _a = req.body, { id, items, customer, service } = _a, rest = __rest(_a, ["id", "items", "customer", "service"]);
         const data1 = await helper_1.default.work_order.update({
             where: { id: req.params.id }, // Assuming the work order ID is provided in the request body
             data: Object.assign({ user: req.user.id, items: {
                     create: items || [],
-                } }, rest),
+                }, customer: { connect: { id: customer } }, service: { connect: { id: service } } }, rest),
         });
         res.status(200).json({
             message: "work order updated successfully",

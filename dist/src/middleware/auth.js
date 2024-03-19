@@ -14,7 +14,7 @@ const authenticateToken = (req, res, next) => {
     }
     try {
         // Verify the JWT token
-        const decoded = jsonwebtoken_1.default.verify(authHeader, process.env.SECRET_KEY);
+        const decoded = jsonwebtoken_1.default.verify(authHeader, "H7BxIFkroaje9xVMpul3dw9ItBR79MBC");
         // Attach the decoded token to the request object
         req.user = decoded;
         // Proceed to the next middleware or route handler

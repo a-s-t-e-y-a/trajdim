@@ -1,2 +1,3 @@
-declare const work_order: import("express-serve-static-core").Router;
+import { Router } from "express";
+declare const work_order: Router;
 export default work_order;

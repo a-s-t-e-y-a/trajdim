@@ -7,7 +7,7 @@ exports.coustmerDelete = void 0;
 const helper_1 = __importDefault(require("../../../config/helper"));
 const coustmerDelete = async (req, res) => {
     try {
-        const data1 = await helper_1.default.coustmer.delete({
+        const data1 = await helper_1.default.customer.delete({
             where: {
                 id: req.params.id,
             },
