@@ -1,3 +1,5 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
 import  {  Request } from "express";
 import multer from "multer";
 import multerS3 from "multer-s3";
@@ -13,7 +15,6 @@ const s3Config = new S3Client({
     secretAccessKey: process.env.SECRET_KEY,
   },
 });
-
 const upload = multer({
   storage: multerS3({
     s3: s3Config,

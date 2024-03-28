@@ -1,7 +1,7 @@
 import express, { Express } from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-
+import { Request, Response } from "express";
 const app:Express = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -27,6 +27,7 @@ import team from "./router_controller/teams/teams_route";
 import work_order from "./router_controller/work_order/work_order.route";
 import services from "./router_controller/services/service_route";
 import contract from "./router_controller/contracts/contracts_route";
+import uploadRouter from "./router_controller/upload/route";
 app.use("/trajdim", signup);
 app.use("/trajdim", loginRoute);
 app.use("/trajdim", coustmer);
@@ -34,10 +35,12 @@ app.use("/trajdim", team);
 app.use("/trajdim", work_order);
 app.use("/trajdim", services);
 app.use("/trajdim", contract);
-
+app.use('/trajdim', uploadRouter)
 // sms service
 
-import { Request, Response } from "express";
+
+
+
 // import sgMail, { MailDataRequired } from "@sendgrid/mail";
 // import twilio from "twilio";
 //
@@ -53,6 +56,7 @@ import { Request, Response } from "express";
 app.get("/", (req: Request, res: Response) => {
   res.send({ data: "some data", message: "some message" });
 });
+
 
 // app.post("/multimail", async (req: Request, res: Response) => {
 //   const { email, sub, html } = req.body;
